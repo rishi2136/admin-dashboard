@@ -3,7 +3,7 @@ import { MdSort } from "react-icons/md";
 import { GrSort } from "react-icons/gr";
 import { FaFilter } from "react-icons/fa";
 import Popup from "../../utils/Popup";
-import Tooltip from "../../utils/ToolTip";
+import Tooltip from "../../utils/Tooltip";
 
 const Sorting = ({ label = "", list }) => {
   let [isVisible, setIsVisible] = useState(false);

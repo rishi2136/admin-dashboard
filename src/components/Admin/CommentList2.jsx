@@ -6,7 +6,7 @@ import Sorting from "./Sorting";
 import { FaUndo } from "react-icons/fa";
 import { IoMdSwitch } from "react-icons/io";
 import Popup from "../../utils/Popup";
-import Tooltip from "../../utils/ToolTip";
+import Tooltip from "../../utils/Tooltip";
 
 const CommentList = ({ setViewComments, viewComments, restaurantReviews }) => {
   let [column, setColumn] = useState(1);

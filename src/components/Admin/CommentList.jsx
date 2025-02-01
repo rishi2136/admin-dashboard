@@ -6,7 +6,7 @@ import Sorting from "./Sorting";
 import { FaUndo } from "react-icons/fa";
 import { IoMdSwitch } from "react-icons/io";
 import Popup from "../../utils/Popup";
-import Tooltip from "../../utils/ToolTip";
+import Tooltip from "../../utils/Tooltip.jsx";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 
