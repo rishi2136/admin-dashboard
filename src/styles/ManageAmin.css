@@ -1,0 +1,102 @@
+.manage-admin {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+  }
+  
+  .add-btn {
+    background-color: #000;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .add-btn:hover {
+    background-color: #444;
+  }
+  
+  .admin-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .admin-table th,
+  .admin-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  .admin-table th {
+    background-color: #000;
+    color: #fff;
+    position: relative;
+  }
+  
+  .admin-table th input,
+  .admin-table th select {
+    width: 90%;
+    margin-top: 5px;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+  }
+  
+  .admin-table tbody tr:nth-child(odd) {
+    background-color: #f9f9f9;
+  }
+  
+  .admin-table tbody tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .view-btn,
+  .edit-btn,
+  .delete-btn {
+    border: none;
+    padding: 5px 10px;
+    margin-right: 5px;
+    cursor: pointer;
+    border-radius: 3px;
+  }
+  
+  .view-btn {
+    background-color: #4caf50;
+    color: white;
+  }
+  
+  .edit-btn {
+    background-color: #ff9800;
+    color: white;
+  }
+  
+  .delete-btn {
+    background-color: #f44336;
+    color: white;
+  }
+  
+  .view-btn:hover {
+    background-color: #45a049;
+  }
+  
+  .edit-btn:hover {
+    background-color: #e68900;
+  }
+  
+  .delete-btn:hover {
+    background-color: #d32f2f;
+  }
+  
