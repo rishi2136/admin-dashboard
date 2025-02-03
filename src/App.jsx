@@ -8,6 +8,7 @@ import Upload from "./pages/Upload";
 import EventList from "./pages/EventList";
 import ChatPanel from "./pages/ChatPanel";
 import UserAccessControl from "./components/Admin/UserAccessControl";
+import FormSwitch from "./components/Form/index/FormSwitch";
 
 import Notifications from "./pages/Notifications";
 import HistoryLogs from "./pages/HistoryLogs";
@@ -17,8 +18,7 @@ import UserManagement from "./pages/UserManagement";
 import Support from "./pages/Support";
 import ManageAdmin from "./pages/ManageAdmin";
 import OrderDetails from "./cards/OrderDetails";
-import Dining from "./components/Form/Dining";
-import AddNewRestaurant from "./pages/AddNewRestaurant";
+// import AddNewRestaurant from "./pages/AddNewRestaurant";
 import RestuarantRegistration from "./components/RestuarantRegistration/RestuarantRegistration";
 import AddRestaurant from "./components/Form/AddRestaurant";
 import ClaimRestaurant from "./pages/ClaimRestaurant";
@@ -26,6 +26,8 @@ import CollectionManagement from "./pages/CollectionManagement";
 import Offers from "./pages/Offers";
 import TaxesAndCharges from "./pages/TaxesAndCharges";
 import EventManagement from "./pages/EventManagement";
+import AddTiffin from "../../../frontend/src/pages/Add-Tiffin";
+import TiffinRegistrationForm from "../../../frontend/src/components/Form/Tiffin/TiffinRegistrationForm";
 
 export const dummyOrders = [
   {
@@ -52,7 +54,7 @@ export const dummyOrders = [
     item: "Burger",
     quantity: 1,
     payment: "Cash",
-    price: 15.50,
+    price: 15.5,
     status: "pending",
     restaurant: "Burger King",
     category: "Fast Food",
@@ -82,7 +84,7 @@ export const dummyOrders = [
     item: "Tacos",
     quantity: 5,
     payment: "Paypal",
-    price: 22.00,
+    price: 22.0,
     status: "pending",
     restaurant: "Mexican Grill",
     category: "Mexican",
@@ -97,7 +99,7 @@ export const dummyOrders = [
     item: "Pasta",
     quantity: 2,
     payment: "Credit Card",
-    price: 34.50,
+    price: 34.5,
     status: "pending",
     restaurant: "Pasta Palace",
     category: "Italian",
@@ -142,7 +144,7 @@ export const dummyOrders = [
     item: "Chicken Wings",
     quantity: 4,
     payment: "Credit Card",
-    price: 18.00,
+    price: 18.0,
     status: "pending",
     restaurant: "Wings",
     category: "Appetizers",
@@ -157,7 +159,7 @@ export const dummyOrders = [
     item: "Fried Rice",
     quantity: 3,
     payment: "Paypal",
-    price: 25.50,
+    price: 25.5,
     status: "expired",
     restaurant: "Asian Delights",
     category: "Chinese",
@@ -180,10 +182,6 @@ export const dummyOrders = [
   },
 ];
 
-
-
-
-
 export default function App() {
   return (
     <Routes>
@@ -192,7 +190,13 @@ export default function App() {
         <Route path="/restaurants" element={<RestaurantList />} />
         <Route path="/restaurants/comments" element={<RestaurantList />} />
         <Route path="/add-restaurant" element={<AddRestaurant />} />
+        <Route path="/switch" element={<FormSwitch />} />
+        <Route path="/add-tiffin" element={<AddTiffin />} />
         <Route path="/new-restaurant" element={<RestuarantRegistration />} />
+        <Route
+          path="/tiffin-registration"
+          element={<TiffinRegistrationForm />}
+        />
         <Route path="/events" element={<EventList />} />
         <Route path="/notifications" element={<Notifications />} />
         <Route path="/analytics" element={<Analytics />} />
@@ -205,22 +209,25 @@ export default function App() {
           element={<OrderManagement orders={dummyOrders} />}
         />
 
-
         {/* Dynamic route for OrderDetails with orderId */}
 
         <Route path="/historylogs" element={<HistoryLogs />} />
         <Route path="/usermanagement" element={<UserManagement />} />
         <Route path="/manage-admins" element={<ManageAdmin />} />
         <Route path="cards/OrderDetails/:orderId" element={<OrderDetails />} />
-        <Route path="/taxes" element={<TaxesAndCharges/>} />
+        <Route path="/taxes" element={<TaxesAndCharges />} />
         <Route path="/claim-restaurant" element={<ClaimRestaurant />} />
 
-        <Route path="/collection-management" element={<CollectionManagement />} />
+        <Route
+          path="/collection-management"
+          element={<CollectionManagement />}
+        />
         {/* <Route path="/settings" element={<Settings />} /> */}
         <Route path="/upload" element={<Upload />} />
         <Route path="/support" element={<Support />} />
         <Route path="/help" element={<Help />} />
- 
+        <Route path="/log" element={<Help />} />
+
         <Route path="/control" element={<UserAccessControl />} />
         {/* Add more pages as needed */}
       </Route>

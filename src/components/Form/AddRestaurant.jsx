@@ -1,21 +1,40 @@
-import React from "react";
-import Dining2 from "./Dining2";
+import React, { useState } from "react";
+import AddRestaurantForm from "./AddRestaurantForm";
+import MenuManagement from "./MenuManagement";
+import { useNavigate } from "react-router-dom";
 
 const AddRestaurant = () => {
+  const [step, setStep] = useState(1); // Current form step
+  let [ID, setID] = useState(null); // Restaurant ID
+  const [productCount, setProductCount] = useState(0);
   const bagdeStyle = `bg-white p-2 py-1 rounded-lg font-semibold border-[.5px] border-black focus:outline-none`;
+
+  // Step navigation
+  const nextStep = () => setStep(step + 1);
+  const prevStep = () => setStep(step - 1);
 
   return (
     <div className="pt-2">
-      <div className="flex justify-between">
-        <h1 className="font-bold text-xl ps-2">Add restaurant</h1>
-        <div className="flex gap-2 justify-end">
-          <button className={bagdeStyle}>Restaurant</button>
-          <button className={bagdeStyle}>Tiffin</button>
-          <button className={bagdeStyle}>Excel Uplood</button>
-        </div>
-      </div>
+      <div className="flex justify-between"></div>
+      {step === 1 && (
+        <AddRestaurantForm
+          nextStep={nextStep}
+          prevStep={prevStep}
+          ID={ID}
+          setID={setID}
+        />
+      )}
 
-      <Dining2 />
+      {step === 2 && (
+        <MenuManagement
+          nextStep={nextStep}
+          prevStep={prevStep}
+          ID={ID}
+          setID={setID}
+          productCount={productCount}
+          setProductCount={setProductCount}
+        />
+      )}
     </div>
   );
 };

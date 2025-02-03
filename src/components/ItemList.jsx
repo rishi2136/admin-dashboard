@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+const URL = import.meta.env.VITE_SERVER_URL;
 
 function ItemList() {
   const [items, setItems] = useState([]);
@@ -19,7 +20,7 @@ function ItemList() {
 
   const getAllItems = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/items");
+      const res = await axios.get(`${URL}/api/items`);
       setItems(res.data);
     } catch (error) {
       console.error(error);
@@ -28,7 +29,7 @@ function ItemList() {
 
   const getAllCategories = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/categories");
+      const res = await axios.get(`${URL}/api/categories`);
       setCategories(res.data);
     } catch (error) {
       console.error(error);
@@ -47,18 +48,14 @@ function ItemList() {
       if (selectedFile) {
         const formData = new FormData();
         formData.append("image", selectedFile);
-        const uploadRes = await axios.post(
-          "http://localhost:5000/api/upload",
-          formData,
-          {
-            headers: { "Content-Type": "multipart/form-data" },
-          }
-        );
+        const uploadRes = await axios.post(`${URL}/api/upload`, formData, {
+          headers: { "Content-Type": "multipart/form-data" },
+        });
         uploadedImageUrl = uploadRes.data.imageUrl; // e.g. "/uploads/1692888888888-dish.png"
       }
 
       // Create the item with the imageUrl
-      await axios.post("http://localhost:5000/api/items", {
+      await axios.post(`${URL}/api/items`, {
         itemName,
         categoryId,
         basePrice,

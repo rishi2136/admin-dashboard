@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 
-
+import Filter from "../components/Admin/Filter.jsx";
 import { GrView } from "react-icons/gr";
 import { LiaCommentSolid } from "react-icons/lia";
 import { GiCash } from "react-icons/gi";
@@ -21,7 +21,7 @@ import { restaurantReviews } from "../data/dummy.js";
 import CommentList2 from "../components/Admin/CommentList2.jsx";
 import { initialOffers } from "../data/offersData.js"; //for the offers
 import OffersList from "../components/OffersList.jsx"; //from the offerlist
-import dummy from "../data/dummy"; //dummy data
+import dummy from "../data/dummy.js"; //dummy data
 
 const RestaurantList = () => {
   const [isEditable, setIsEditable] = useState(false);

@@ -1,3 +1,5 @@
+const API_URL = "http://localhost:5000";
+
 const Restaurants = [
   { id: 1, name: "The Gourmet Spot" },
   { id: 2, name: "Ocean Breeze Bistro" },
@@ -434,4 +436,12 @@ const offers = [
   },
 ];
 
-export { features, features2, Restaurants, listedTabs, offers, resList };
+export {
+  features,
+  features2,
+  Restaurants,
+  listedTabs,
+  offers,
+  resList,
+  API_URL,
+};

@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import CategoryModal from "./CategoryModal";
+const URL = import.meta.env.VITE_SERVER_URL;
 
 function CategoryList() {
   const [categories, setCategories] = useState([]);
@@ -13,7 +14,7 @@ function CategoryList() {
 
   const fetchCategories = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/categories");
+      const res = await axios.get(`${URL}/api/categories`);
       setCategories(res.data);
     } catch (err) {
       console.error(err);
@@ -22,7 +23,7 @@ function CategoryList() {
 
   const handleSaveCategory = async (name) => {
     try {
-      await axios.post("http://localhost:5000/api/categories", {
+      await axios.post(`${URL}/api/categories`, {
         categoryName: name,
       });
       fetchCategories();

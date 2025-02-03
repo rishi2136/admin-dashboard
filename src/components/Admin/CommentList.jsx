@@ -6,7 +6,7 @@ import Sorting from "./Sorting";
 import { FaUndo } from "react-icons/fa";
 import { IoMdSwitch } from "react-icons/io";
 import Popup from "../../utils/Popup";
-import Tooltip from "../../utils/Tooltip.jsx";
+import Tooltip from "../../utils/Tooltip";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 
@@ -193,7 +193,7 @@ const CommentList = ({ setViewComments, viewComments, restaurantReviews }) => {
                 />
                 <button
                   onClick={(e) => handleReply(e, review.id)}
-                  className="border-0 bg-transparent items-start flex focus:outline-none h-auto bg-blue-700 text-white rounded p-2"
+                  className="border-0  items-start flex focus:outline-none h-auto bg-blue-700 text-white rounded p-2"
                 >
                   Send
                 </button>
