@@ -26,7 +26,7 @@ import CollectionManagement from "./pages/CollectionManagement";
 import Offers from "./pages/Offers";
 import TaxesAndCharges from "./pages/TaxesAndCharges";
 import EventManagement from "./pages/EventManagement";
-import AddTiffin from "../../../frontend/src/pages/Add-Tiffin";
+import AddTiffin from "./pages/Add-Tiffin";
 import TiffinRegistrationForm from "../../../frontend/src/components/Form/Tiffin/TiffinRegistrationForm";
 
 export const dummyOrders = [
