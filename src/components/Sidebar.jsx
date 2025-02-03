@@ -33,7 +33,7 @@ export default function Sidebar() {
 
   // Adjusted sidebar container classes
   const sidebarClasses = `
-    ${expanded ? "w-64" : "w-10"}
+    ${expanded ? "w-64" : "w-16"}
     flex flex-col
      border-r border-gray-800
     bg-gray-900
@@ -171,7 +171,9 @@ export default function Sidebar() {
             Admin Dashboard
           </div>
           <span
-            className={`transition-transform duration-300 ${adminDropdownOpen ? "rotate-90" : ""}`}
+            className={`transition-transform duration-300 ${
+              adminDropdownOpen ? "rotate-90" : ""
+            }`}
           >
             {expanded ? ">" : ""}
           </span>
@@ -181,10 +183,38 @@ export default function Sidebar() {
         {adminDropdownOpen && (
           <div className="absolute left-0 top-full bg-gray-900 border border-gray-700 rounded-md shadow-lg z-[100] mt-1">
             <ul className="ml-0 space-y-1 p-2 w-56">
-              <li>{navItem("https://super-piroshki-0e56df.netlify.app/", HiOutlineUserGroup, "Marketing Dashboard", true)}</li>
-              <li>{navItem("https://stellar-lolly-15c5c4.netlify.app/", HiOutlineUserGroup, "Event Dashboard", true)}</li>
-              <li>{navItem("https://deft-entremet-2b5784.netlify.app/", HiOutlineTruck, "Moderator Dashboard", true)}</li>
-              <li>{navItem("/setting", MdOutlineRestaurantMenu, "Restaurant Dashboard", true)}</li>
+              <li>
+                {navItem(
+                  "https://super-piroshki-0e56df.netlify.app/",
+                  HiOutlineUserGroup,
+                  "Marketing Dashboard",
+                  true
+                )}
+              </li>
+              <li>
+                {navItem(
+                  "https://stellar-lolly-15c5c4.netlify.app/",
+                  HiOutlineUserGroup,
+                  "Event Dashboard",
+                  true
+                )}
+              </li>
+              <li>
+                {navItem(
+                  "https://deft-entremet-2b5784.netlify.app/",
+                  HiOutlineTruck,
+                  "Moderator Dashboard",
+                  true
+                )}
+              </li>
+              <li>
+                {navItem(
+                  "/setting",
+                  MdOutlineRestaurantMenu,
+                  "Restaurant Dashboard",
+                  true
+                )}
+              </li>
             </ul>
           </div>
         )}
@@ -214,9 +244,11 @@ export default function Sidebar() {
                   <span
                     className={`whitespace-nowrap
                                 transition-all duration-300 ease-in-out
-                                ${expanded
-                                  ? "opacity-100 w-auto"
-                                  : "opacity-0 w-0"}
+                                ${
+                                  expanded
+                                    ? "opacity-100 w-auto"
+                                    : "opacity-0 w-0"
+                                }
                                 overflow-hidden`}
                   >
                     User Management
@@ -255,12 +287,24 @@ export default function Sidebar() {
           </li>
 
           <Tab text="Order Management" to="/orders" icon={HiOutlineTruck} />
-          <Tab text="Event Management" to="/event" icon={HiOutlineInformationCircle} />
+          <Tab
+            text="Event Management"
+            to="/event"
+            icon={HiOutlineInformationCircle}
+          />
           <Tab text="Help" to="/help" icon={HiOutlineGift} />
           <Tab text="Offers" to="/offers" icon={HiOutlineGift} />
-          <Tab text="Taxes and Charges" to="/taxes" icon={HiOutlineGift}/>
-          <Tab text="Claim Restaurant" to="/claim-restaurant" icon={HiOutlineInformationCircle} />
-          <Tab text="Collection Management" to="/collection-management" icon={HiOutlineInformationCircle} />
+          <Tab text="Taxes and Charges" to="/taxes" icon={HiOutlineGift} />
+          <Tab
+            text="Claim Restaurant"
+            to="/claim-restaurant"
+            icon={HiOutlineInformationCircle}
+          />
+          <Tab
+            text="Collection Management"
+            to="/collection-management"
+            icon={HiOutlineInformationCircle}
+          />
           <Tab text="Settings" to="/settings" icon={HiOutlineCog} />
           <Tab
             text="History Logs"
