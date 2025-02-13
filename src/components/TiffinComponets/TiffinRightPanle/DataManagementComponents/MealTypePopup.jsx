@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-const URL = import.meta.env.VITE_SERVER_URL;
 
 const predefinedMealTypeLabels = [
   "Basic Combo",
@@ -29,6 +28,7 @@ const MealTypePopup = ({
     predefinedMealTypeLabels
   );
   const [showSuggestions, setShowSuggestions] = useState(false);
+  const ownerEmail = localStorage.getItem("ownerEmail");
 
   // Tracks missing fields
   const [missingFields, setMissingFields] = useState({
@@ -39,7 +39,9 @@ const MealTypePopup = ({
 
   useEffect(() => {
     const mapMealPlans = async () => {
-      const response = await axios.get(`${URL}/api/menu`);
+      const response = await axios.get(
+        `${import.meta.env.VITE_SERVER_URL}/api/menu/${ownerEmail}`
+      );
       setPlans(response.data.plans);
       // console.log("The Plans is:", response.data.plans)
     };
@@ -151,21 +153,31 @@ const MealTypePopup = ({
     try {
       if (editingItem.mealTypeId) {
         // Edit Meal Type
-        await axios.put(`${URL}/api/edit-meal-type/${editingItem.mealTypeId}`, {
-          label: editingItem.label,
-          description: editingItem.description,
-          prices: editingItem.prices,
-          applyTo,
-          selectedPlans:
-            applyTo === "all" ? Plans.map((plan) => plan.label) : selectedPlans,
-        });
+        await axios.put(
+          `${import.meta.env.VITE_SERVER_URL}/api/edit-meal-type/${
+            editingItem.mealTypeId
+          }/${ownerEmail}`,
+          {
+            label: editingItem.label,
+            description: editingItem.description,
+            prices: editingItem.prices,
+            applyTo,
+            selectedPlans:
+              applyTo === "all"
+                ? Plans.map((plan) => plan.label)
+                : selectedPlans,
+          }
+        );
       } else {
         // Add Meal Type
-        const mealTypeResponse = await axios.post(`${URL}/api/add-meal-type`, {
-          label: editingItem.label,
-          description: editingItem.description,
-          prices: editingItem.prices,
-        });
+        const mealTypeResponse = await axios.post(
+          `${import.meta.env.VITE_SERVER_URL}/api/add-meal-type/${ownerEmail}`,
+          {
+            label: editingItem.label,
+            description: editingItem.description,
+            prices: editingItem.prices,
+          }
+        );
 
         const newMealTypeId =
           mealTypeResponse.data.tiffin.menu.mealTypes.slice(-1)[0].mealTypeId;
@@ -177,7 +189,12 @@ const MealTypePopup = ({
             applyTo === "all" ? Plans.map((plan) => plan.label) : selectedPlans,
         };
 
-        await axios.post(`${URL}/api/apply-meal-plans`, planData);
+        await axios.post(
+          `${
+            import.meta.env.VITE_SERVER_URL
+          }/api/apply-meal-plans/${ownerEmail}`,
+          planData
+        );
       }
 
       if (refreshData) {

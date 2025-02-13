@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import axios from "axios";
-const URL = import.meta.env.VITE_SERVER_URL;
 
 const predefinedPlans = [
   { label: "Trial (1Day)", value: 1 },
@@ -21,6 +20,7 @@ const MealPlanPopup = ({
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [filteredSuggestions, setFilteredSuggestions] =
     useState(predefinedPlans);
+  const ownerEmail = localStorage.getItem("ownerEmail");
 
   const checkForDuplicates = () => {
     const editingPlanId = editingItem._id;
@@ -47,14 +47,22 @@ const MealPlanPopup = ({
     try {
       if (editingItem._id) {
         console.log("editingItem._id", editingItem._id);
-        await axios.put(`${URL}/api/edit-meal-plan/${editingItem._id}`, {
-          label: editingItem.label,
-        });
+        await axios.put(
+          `${import.meta.env.VITE_SERVER_URL}/api/edit-meal-plan/${
+            editingItem._id
+          }/${ownerEmail}`,
+          {
+            label: editingItem.label,
+          }
+        );
       } else {
         console.log("editingItem._id", editingItem._id);
-        await axios.post(`${URL}/api/add-plan`, {
-          label: editingItem.label,
-        });
+        await axios.post(
+          `${import.meta.env.VITE_SERVER_URL}/api/add-plan/${ownerEmail}`,
+          {
+            label: editingItem.label,
+          }
+        );
       }
 
       if (refreshData) {

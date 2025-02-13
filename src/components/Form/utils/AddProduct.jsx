@@ -2,16 +2,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { API_URL } from "../../../data/info";
 import { Link, useNavigate } from "react-router-dom";
-const URL = import.meta.env.VITE_SERVER_URL;
+// const URL = import.meta.env.VITE_SERVER_URL;
 
-const AddProduct = ({
-  ID,
-  nextStep,
-  prevStep,
-  setID,
-  productCount,
-  setProductCount,
-}) => {
+const AddProduct = ({ ID, nextStep, prevStep, setID }) => {
   const [formData, setFormData] = useState({
     productName: "",
     price: "",
@@ -22,7 +15,7 @@ const AddProduct = ({
     dietary: [],
     group: "",
   });
-
+  const [productCount, setProductCount] = useState(0);
   const [productList, setProductList] = useState([]);
   const [imagePreviews, setImagePreviews] = useState([]);
   const [errors, setErrors] = useState({});
@@ -30,7 +23,8 @@ const AddProduct = ({
 
   const handleReturn = () => {
     setID(null);
-    navigate("/");
+    // navigate("/");
+    nextStep();
   };
   const dietaryOptions = [
     { label: "Vegetarian", value: "vegetarian" },
@@ -60,13 +54,19 @@ const AddProduct = ({
       }));
     }
   };
-  // console.log(ID);
+
   // Fetch product list from the backend
   useEffect(() => {
-    if (ID) {
+    if (productCount > 0) {
       const fetchProducts = async () => {
         try {
-          const response = await axios.get(`${URL}/product/${ID}/all-products`);
+          const response = await axios.get(
+            `${import.meta.env.VITE_SERVER_URL}/product/${ID}/all-products`
+          );
+          console.log(response);
+          if (response.data.message) {
+            return alert(response.data.message);
+          }
           setProductList(response.data);
         } catch (err) {
           console.error("Failed to fetch products:", err);
@@ -75,13 +75,12 @@ const AddProduct = ({
 
       fetchProducts();
     }
-  }, [ID, productCount]);
+  }, [productCount]);
 
-  console.log(ID);
+  console.log(ID); //firm id
   // Submit form data to the backend
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     if (!validateForm()) return;
 
     const formPayload = new FormData();
@@ -99,25 +98,24 @@ const AddProduct = ({
     });
 
     formData.dietary.forEach((item, idx) => {
-      formPayload.append(`dietary[${idx}]`, item);
+      formPayload.append(`dietary`, item);
     });
 
     try {
-      // console.log(formPayload);
-      // Log form data entries to the console
-      for (const [key, value] of formPayload.entries()) {
-        console.log(`${key}: ${value}`);
-      }
       const res = await axios.post(
-        `${URL}/product/${ID}/add-product`,
+        `${import.meta.env.VITE_SERVER_URL}/product/${ID}/add-product`,
         formPayload,
         {
           headers: { "Content-Type": "multipart/form-data" },
         }
       );
-      alert("Product added successfully!");
-      setProductCount((prev) => prev + 1);
+      // alert("Product added successfully!");
+      // console.log(res.data)
       console.log(res.data);
+      if (res.data.response === "ok") {
+        alert(res.data.message);
+      }
+      setProductCount((prev) => prev + 1);
       // Reset form data
       setFormData({
         productName: "",
@@ -164,12 +162,12 @@ const AddProduct = ({
   };
 
   return (
-    <div className="p-6 bg-gray-100 rounded-md">
+    <div className="bg-white rounded-lg shadow-lg p-6 mb-3">
       <button
         onClick={handleReturn}
         className="rounded-md py-1 px-2 bg-blue-500 text-white float-end"
       >
-        Finish & Return
+        Done and Move Forward
       </button>
       <h2 className="text-xl font-semibold mb-4">Add New Product</h2>
       <form onSubmit={handleSubmit}>
@@ -283,7 +281,7 @@ const AddProduct = ({
         />
 
         <label>Dietary Preferences:</label>
-        <div className="flex items-center ">
+        <div className="flex items-center flex-wrap">
           {dietaryOptions.map(({ label, value }) => (
             <div key={value} className="flex items-center">
               <input
@@ -330,26 +328,33 @@ const AddProduct = ({
           type="submit"
           className="mt-4 p-2 bg-blue-500 text-white rounded-md"
         >
-          Submit
+          Add Product
         </button>
-        <button
+        {/* <button
           type="button"
           className="mt-4 ml-2 p-2 bg-gray-400 text-white rounded-md"
           onClick={prevStep}
         >
           Back
-        </button>
+        </button> */}
       </form>
 
       {/* Display Added Products */}
+
       <h3 className="mt-8 text-lg font-semibold">Product List</h3>
-      <ul>
-        {productList.map((product) => (
-          <li key={product._id} className="border-b py-2">
-            <strong>{product.productName}</strong> - ${product.price}
-            <p>{product.description}</p>
-          </li>
-        ))}
+      <ul className="mb-4 ">
+        {productList.length > 0 &&
+          productList.map((product) => (
+            <li key={product._id} className="border-b py-2 ">
+              <div className="bg-gray-300 rounded h-14 w-14">
+                <img src={product.images[0].url || ""} alt="" />
+              </div>
+              <div>
+                <strong>{product.productName}</strong> - ${product.price}
+                <p>{product.description}</p>
+              </div>
+            </li>
+          ))}
       </ul>
     </div>
   );

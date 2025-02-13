@@ -64,7 +64,7 @@ const RestaurantList = () => {
   useEffect(() => {
     const observerOptions = {
       root: null, // Viewport
-      threshold: 0.75, // 75% of the section is visible
+      threshold: 0.6, // 60% of the section is visible
     };
 
     const observerCallback = (entries) => {

@@ -3,7 +3,7 @@ import TiffinLeftPanel from "../components/TiffinComponets/TiffinLeftPanel";
 import TiffinRightPanel from "../components/TiffinComponets/TiffinRightPanle/TiffinRightPanel";
 import TopBar from "../components/TopBar";
 
-export default function AddTiffin() {
+export default function AddTiffin({ email, setEmail, nextStep }) {
   const initialComponent =
     localStorage.getItem("selectedComponent") || "Manage-Tiffin";
   const [selectedComponet, setSelectedComponet] = useState(initialComponent);
@@ -18,8 +18,15 @@ export default function AddTiffin() {
   return (
     <div className="flex h-screen">
       <div className="flex flex-col flex-1 overflow-hidden ">
-        <TiffinLeftPanel onselectComponet={setSelectedComponet} />
-        <TiffinRightPanel selectedComponet={selectedComponet} />
+        <TiffinLeftPanel
+          onselectComponet={setSelectedComponet}
+          nextStep={nextStep}
+        />
+        <TiffinRightPanel
+          selectedComponet={selectedComponet}
+          email={email}
+          setEmail={setEmail}
+        />
       </div>
     </div>
   );

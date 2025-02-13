@@ -19,7 +19,6 @@ import Support from "./pages/Support";
 import ManageAdmin from "./pages/ManageAdmin";
 import OrderDetails from "./cards/OrderDetails";
 // import AddNewRestaurant from "./pages/AddNewRestaurant";
-import RestuarantRegistration from "./components/RestuarantRegistration/RestuarantRegistration";
 import AddRestaurant from "./components/Form/AddRestaurant";
 import ClaimRestaurant from "./pages/ClaimRestaurant";
 import CollectionManagement from "./pages/CollectionManagement";
@@ -190,9 +189,8 @@ export default function App() {
         <Route path="/restaurants" element={<RestaurantList />} />
         <Route path="/restaurants/comments" element={<RestaurantList />} />
         <Route path="/add-restaurant" element={<AddRestaurant />} />
-        <Route path="/switch" element={<FormSwitch />} />
+        <Route path="/register" element={<FormSwitch />} />
         <Route path="/add-tiffin" element={<AddTiffin />} />
-        <Route path="/new-restaurant" element={<RestuarantRegistration />} />
         <Route
           path="/tiffin-registration"
           element={<TiffinRegistrationForm />}

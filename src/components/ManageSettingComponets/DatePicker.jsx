@@ -16,6 +16,7 @@ function DatePicker({ onSelect }) {
   return (
     <div className="relative">
       <button
+        type="button"
         onClick={() => setShowCalendar(!showCalendar)}
         className="flex items-center px-4 py-2 border rounded-md hover:bg-gray-50 w-[280px] justify-start text-left"
       >

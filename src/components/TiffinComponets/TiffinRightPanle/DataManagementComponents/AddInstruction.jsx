@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { MdOutlineIntegrationInstructions } from "react-icons/md";
 import { FiEdit, FiTrash2 } from "react-icons/fi";
-const URL = import.meta.env.VITE_SERVER_URL;
 
 export const dummyInstructions = {
   instructions: [
@@ -51,12 +50,15 @@ const AddInstruction = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [showSuggestions, setShowSuggestions] = useState(false);
+  const ownerEmail = localStorage.getItem("ownerEmail");
 
   // Load initial instructions from the backend
   useEffect(() => {
     const fetchInstructions = async () => {
       try {
-        const response = await axios.get(`${URL}/api/menu`);
+        const response = await axios.get(
+          `${import.meta.env.VITE_SERVER_URL}/api/menu/${ownerEmail}`
+        );
         setInstructionData(response.data.instructions || []);
       } catch (err) {
         console.error("Error loading instructions:", err);
@@ -151,10 +153,13 @@ const AddInstruction = () => {
     setError("");
 
     try {
-      const response = await axios.post(`${URL}/api/add-instruction`, {
-        title: newInstruction.title,
-        details: newInstruction.details,
-      });
+      const response = await axios.post(
+        `${import.meta.env.VITE_SERVER_URL}/api/add-instruction/${ownerEmail}`,
+        {
+          title: newInstruction.title,
+          details: newInstruction.details,
+        }
+      );
 
       const newInstructionWithId = {
         ...newInstruction,
@@ -193,7 +198,9 @@ const AddInstruction = () => {
 
     try {
       await axios.put(
-        `${URL}/api/edit-instruction/${instructionData[index]._id}`,
+        `${import.meta.env.VITE_SERVER_URL}/api/edit-instruction/${
+          instructionData[index]._id
+        }/${ownerEmail}`,
         {
           title: editInstruction.title,
           details: editInstruction.details,
@@ -218,7 +225,11 @@ const AddInstruction = () => {
     if (!confirmDelete) return;
 
     try {
-      await axios.delete(`${URL}/api/delete-instruction/${id}`);
+      await axios.delete(
+        `${
+          import.meta.env.VITE_SERVER_URL
+        }/api/delete-instruction/${id}/${ownerEmail}`
+      );
       setInstructionData((prevData) =>
         prevData.filter((instruction) => instruction._id !== id)
       );

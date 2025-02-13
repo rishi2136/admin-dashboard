@@ -229,7 +229,7 @@ export default function Sidebar() {
             to="/restaurants"
             icon={MdOutlineRestaurantMenu}
           />
-          <Tab text="Upload" to={"/upload"} icon={FiUpload} />
+          <Tab text="Upload" to={"/register"} icon={FiUpload} />
           <Tab text="Access Control" to="/control" icon={GoShieldLock} />
 
           {/* User Management Dropdown */}

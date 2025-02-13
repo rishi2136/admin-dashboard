@@ -11,7 +11,7 @@ const inputItems = [
   { id: 'freeDelivery', label: 'Free Delivery', icon: FaTruck, placeholder: 'E.g., Orders above ₹500' },
   { id: 'deliveryCity', label: 'Delivery City', icon: FaMapMarkerAlt, placeholder: 'Enter city name' },
   { id: 'specialMealDay', label: 'Special Meal Day', icon: FaCalendarAlt, placeholder: 'E.g., Sunday' },
-  { id: 'location', label: 'Location', icon: FaMapMarkerAlt, placeholder: 'Enter your location' },
+  // { id: 'location', label: 'Location', icon: FaMapMarkerAlt, placeholder: 'Enter your location' },
 ];
 
 export function AdditionalSettingsSection({ additionalSettings, handleAdditionalSettingChange }) {
