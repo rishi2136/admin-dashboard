@@ -137,12 +137,13 @@ input {
   padding: 10px;
   font-size: 14px;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 20px !important;
 }
 
 input:focus {
   outline: none;
-  border-color: #1747c4;
+  /* border-color: #1747c4; */
+  border-color: black;
 }
 
 .phoneWrapper {

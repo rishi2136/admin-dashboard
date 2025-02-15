@@ -43,6 +43,15 @@ const users = [
   },
 ];
 
+// const [info, setInfo] = useState({
+//   id: "",
+//   name: "",
+//   email: "",
+//   role: "",
+//   lastLogin: "",
+//   status: "",
+// });
+
 const UserAccessControl = () => {
   const [filter, setFilter] = useState("All"); // Filter state: "All" by default
   const [expandedRows, setExpandedRows] = useState(-1); // To track expanded rows
@@ -62,16 +71,12 @@ const UserAccessControl = () => {
     setIsEdit(-1);
   };
 
-  const handleCloseAll = () => {
-    setExpandedRows(-1);
-    setIsEdit(-1);
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
   };
 
   return (
     <div className="p-4 bg-gray-100 min-h-screen">
-      <button onClick={handleCloseAll} className="p-2 bg-white float-end">
-        Close all
-      </button>
       {/* Filter Badges */}
       <div className="flex flex-wrap mb-4 space-x-2">
         {[
@@ -171,80 +176,68 @@ const UserAccessControl = () => {
                     </div>
                   </td>
                 </tr>
-
-                {/* Expanded Details Row */}
-                {expandedRows === user.id && (
-                  <tr>
-                    {isEdit === user.id ? (
-                      <th
-                        colSpan={8}
-                        className="p-4 flex flex-col gap-1 bg-gray-50 w-full"
-                      >
-                        Edit user details
-                        <div>
-                          <input
-                            type="text"
-                            placeholder={user.id}
-                            className="w-[200px] focus:outline-none bg-gray-200 "
-                          />
-                        </div>
-                        <div>
-                          <input
-                            type="text"
-                            placeholder={user.name}
-                            className="w-[200px] focus:outline-none bg-gray-200 "
-                          />
-                        </div>
-                        <div>
-                          <input
-                            type="text"
-                            placeholder={user.email}
-                            className="w-[200px] focus:outline-none bg-gray-200 "
-                          />
-                        </div>
-                        <div>
-                          {" "}
-                          <input
-                            type="text"
-                            placeholder={user.role}
-                            className="w-[200px] focus:outline-none bg-gray-200 "
-                          />
-                        </div>
-                        <div>
-                          <input
-                            type="text"
-                            placeholder={user.lastLogin}
-                            className="w-[200px] focus:outline-none bg-gray-200 "
-                          />
-                        </div>
-                        <div className="flex gap-2">
-                          <button className="rounded-sm bg-blue-400">
-                            Save
-                          </button>
-                          <button className="rounded-sm bg-red-400">
-                            Cancel
-                          </button>
-                        </div>
-                      </th>
-                    ) : (
-                      <td colSpan={8} className="p-4">
-                        <div>
-                          <p>
-                            <strong>Details:</strong>
-                          </p>
-                          <p>User ID: {user.id}</p>
-                          <p>Name: {user.name}</p>
-                          <p>Email: {user.email}</p>
-                          <p>Role: {user.role}</p>
-                          <p>Last Login: {user.lastLogin}</p>
-                          <p>Status: {user.status}</p>
-                        </div>
-                      </td>
-                    )}
-                  </tr>
-                )}
               </React.Fragment>
             ))}
+            {/* <form onSubmit={handleSubmit}>
+              <tr className="hover:bg-gray-100 border-b last:border-none cursor-pointer">
+                <td className="p-4">
+                  <input type="checkbox" />
+                </td>
+                <td className="p-4"> {users[0].id}</td>
+                <td className="p-4">
+                  <input type="text" placeholder={users[0].name} />
+                </td>
+                <td className="p-4">{users[0].email}</td>
+                <td className="p-4">
+                  <span
+                    className={`px-2 py-1 text-xs rounded ${
+                      users[0].role === "Restaurant Owner"
+                        ? "bg-blue-100 text-blue-800"
+                        : users[0].role === "Customer"
+                        ? "bg-green-100 text-green-800"
+                        : users[0].role === "Event Creator"
+                        ? "bg-yellow-100 text-yellow-800"
+                        : "bg-purple-100 text-purple-800"
+                    }`}
+                  >
+                    {users[0].role}
+                  </span>
+                </td>
+                <td className="p-4">{users[0].lastLogin}</td>
+                <td className="p-4">
+                  <span
+                    className={`px-2 py-1 text-xs rounded ${
+                      users[0].status === "Active"
+                        ? "bg-green-100 text-green-800"
+                        : users[0].status === "Inactive"
+                        ? "bg-gray-100 text-gray-800"
+                        : "bg-yellow-100 text-yellow-800"
+                    }`}
+                  >
+                    {users[0].status}
+                  </span>
+                </td>
+                <td className="p-4">
+                  <div className="flex space-x-2">
+                    <button
+                      className="text-sm px-2 py-1 bg-gray-100 rounded hover:bg-gray-200"
+                      onClick={() => handleEdit(users[0].id)}
+                    >
+                      Edit
+                    </button>
+                    <button className="text-sm px-2 py-1 bg-gray-100 rounded hover:bg-gray-200">
+                      Delete
+                    </button>
+                    <button
+                      className="text-sm px-2 py-1 bg-gray-100 rounded hover:bg-gray-200"
+                      onClick={() => toggleRow(users[0].id)}
+                    >
+                      View
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </form> */}
           </tbody>
         </table>
       </div>

@@ -7,7 +7,7 @@ import RestaurantList from "./pages/RestaurantList";
 import Upload from "./pages/Upload";
 import EventList from "./pages/EventList";
 import ChatPanel from "./pages/ChatPanel";
-import UserAccessControl from "./components/Admin/UserAccessControl";
+import UserAccessControl from "./pages/UserAccessControl";
 import FormSwitch from "./components/Form/index/FormSwitch";
 
 import Notifications from "./pages/Notifications";
@@ -27,6 +27,8 @@ import TaxesAndCharges from "./pages/TaxesAndCharges";
 import EventManagement from "./pages/EventManagement";
 import AddTiffin from "./pages/Add-Tiffin";
 import TiffinRegistrationForm from "./components/Form/Tiffin/TiffinRegistrationForm";
+import Signup from "./pages/Signup";
+import Login from "./pages/Login";
 
 export const dummyOrders = [
   {
@@ -200,6 +202,8 @@ export default function App() {
         <Route path="/analytics" element={<Analytics />} />
         <Route path="/event" element={<EventManagement />} />
         <Route path="/offers" element={<Offers />} />
+        <Route path="/sign-up" element={<Signup />} />
+        <Route path="/log-in" element={<Login />} />
 
         {/* Orders route */}
         <Route

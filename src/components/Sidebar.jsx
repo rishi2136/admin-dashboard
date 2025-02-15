@@ -23,6 +23,7 @@ import { FiUpload } from "react-icons/fi";
 import { LuPartyPopper } from "react-icons/lu";
 import { BiSupport } from "react-icons/bi";
 import { GoShieldLock } from "react-icons/go";
+import { PiSealPercentFill } from "react-icons/pi";
 
 export default function Sidebar() {
   const [expanded, setExpanded] = useState(false);
@@ -233,7 +234,7 @@ export default function Sidebar() {
           <Tab text="Access Control" to="/control" icon={GoShieldLock} />
 
           {/* User Management Dropdown */}
-          <li>
+          {/* <li>
             <div
               className="block rounded-md text-gray-200 hover:bg-gray-700 transition-colors duration-200 cursor-pointer"
               onClick={handleUserManagementClick}
@@ -284,7 +285,7 @@ export default function Sidebar() {
                 </li>
               </ul>
             )}
-          </li>
+          </li> */}
 
           <Tab text="Order Management" to="/orders" icon={HiOutlineTruck} />
           <Tab
@@ -293,7 +294,7 @@ export default function Sidebar() {
             icon={HiOutlineInformationCircle}
           />
           <Tab text="Help" to="/help" icon={HiOutlineGift} />
-          <Tab text="Offers" to="/offers" icon={HiOutlineGift} />
+          <Tab text="Offers" to="/offers" icon={PiSealPercentFill} />
           <Tab text="Taxes and Charges" to="/taxes" icon={HiOutlineGift} />
           <Tab
             text="Claim Restaurant"

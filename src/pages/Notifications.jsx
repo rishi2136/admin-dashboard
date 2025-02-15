@@ -31,17 +31,7 @@ const Notifications = () => {
   const [selectedFilter, setSelectedFilter] = useState(null);
   const [filterDropdownOpen, setFilterDropdownOpen] = useState(false);
   const [hoveredItem, setHoveredItem] = useState(null);
-  const [selectedDetails, setSelectedDetails] = useState({
-    why: "Seasonal updates",
-    when: "2024-01-01",
-    who: "Restaurant Owner",
-    address: "123 Food St, City, Country",
-    email: "contact@restaurant.com",
-    phone: "+1234567890",
-    description: "hsdkjsh dhjhkjfj sdifdfky ww fiwuiflkdkjndjsjkkjhfkjhfa",
-    lastUpdate: "2024-01-10",
-    status: "Resolved",
-  });
+  const [selectedDetails, setSelectedDetails] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
   const [drop, setDrop] = useState(false);
 
@@ -54,40 +44,38 @@ const Notifications = () => {
   //   setFilterDropdownOpen(false);
   // };
 
-  const handleItemClick = async (Info) => {
-    // const details = {
-    //   ...item,
-    //   why: type === "restaurant" ? "Customer demand" : "Seasonal updates",
-    //   when: "2024-01-01",
-    //   who: "Restaurant Owner",
-    //   address: "123 Food St, City, Country",
-    //   email: "contact@restaurant.com",
-    //   phone: "+1234567890",
-    //   description: item.description,
-    //   lastUpdate: "2024-01-10",
-    //   status: item.hasChanges ? "Pending" : "Resolved",
-    // };
+  const handleInfoBadgeClick = (Info) => {
+    const data = {
+      Level: Info.level,
+      Message: Info.message,
+      Date:
+        new Date(Info.timestamp).toLocaleDateString() +
+        " " +
+        new Date(Info.timestamp).toLocaleTimeString(),
+      Action: Info.metadata.action,
+      Actor: Info.metadata.actor,
+      notify_type: Info.metadata.nType,
+    };
 
-    // const data = {
-    //   action: Info.metadata.action,
-    //   actor: Info.metadata.actor,
-    //   message: Info.metadata
-    // }
-    // setSelectedDetails(details);
+    setSelectedDetails(data);
+    setModalOpen(true);
+  };
 
-    const res = await axios.put(
-      import.meta.env.VITE_SERVER_URL + "/notify/" + Info._id
-    );
-    if (res.data.response === "ok") {
-      setTrigger(true);
-      alert("User update");
+  const handleItemClick = async (ID) => {
+    try {
+      const res = await axios.put(
+        import.meta.env.VITE_SERVER_URL + "/notify/" + ID
+      );
+      if (res.data.response === "ok") {
+        setTrigger(true);
+        alert("User update");
+      }
+    } catch (err) {
+      console.log(err);
+      alert(err.message);
     }
 
-    setModalOpen(true);
-
-    // if (type === "restaurant") {
-    //   setSelectedRestaurant(item.id);
-    // }
+    // console.log(Info);
   };
 
   //method triggered on the btn click
@@ -115,7 +103,7 @@ const Notifications = () => {
       console.log(id);
     },
   };
-  const actionBtnClass = `font-medium text-lg text-white rounded focus:outline-none active:drop-shadow-xl active:outline-none`;
+  const actionBtnClass = `border-2 font-medium text-lg  rounded focus:outline-none active:drop-shadow-xl active:outline-none`;
 
   //action btn element
   const actionBtn = {
@@ -126,7 +114,9 @@ const Notifications = () => {
           className="border-0 bg-transparent items-start flex h-0 rounded"
           onClick={(e) => actions.onAccept(e, id)}
         >
-          <IoCheckmarkSharp className={`bg-green-400 ${actionBtnClass}`} />
+          <IoCheckmarkSharp
+            className={` text-green-400 border-green-400 ${actionBtnClass}`}
+          />
         </button>
       </Tooltip>
     ),
@@ -137,7 +127,9 @@ const Notifications = () => {
           className="border-0 bg-transparent items-start flex h-0 rounded"
           onClick={(e) => actions.onReject(e, id)}
         >
-          <IoCloseSharp className={`bg-red-400 ${actionBtnClass}`} />
+          <IoCloseSharp
+            className={` text-red-400 border-red-400 ${actionBtnClass}`}
+          />
         </button>
       </Tooltip>
     ),
@@ -149,7 +141,7 @@ const Notifications = () => {
           onClick={(e) => actions.onReject(e, id)}
         >
           <MdOutlineRestaurantMenu
-            className={`bg-yellow-400 ${actionBtnClass}`}
+            className={`text-yellow-400 border-yellow-400 ${actionBtnClass}`}
           />
         </button>
       </Tooltip>
@@ -161,7 +153,9 @@ const Notifications = () => {
           className="border-0 bg-transparent items-start flex h-0 rounded"
           onClick={(e) => actions.onReject(e, id)}
         >
-          <IoPerson className={`bg-green-400 ${actionBtnClass}`} />
+          <IoPerson
+            className={`text-black-400 border-green-400 ${actionBtnClass}`}
+          />
         </button>
       </Tooltip>
     ),
@@ -195,6 +189,8 @@ const Notifications = () => {
   };
   // console.log(notifys);
 
+  const dateBadgeStyleClass = `text-[9px] rounded p-1 bg-gray-200`;
+
   return (
     <>
       {notifys ? (
@@ -203,7 +199,7 @@ const Notifications = () => {
             <div className="relative">
               {/* <button onClick={() => setModalOpen((prev) => !prev)}>open</button> */}
               <button
-                className="flex items-center gap-1 px-2 py-1 bg-black text-white rounded"
+                className="flex items-center gap-1 px-2 py-1 border text-black border-black rounded"
                 onClick={toggleFilterDropdown}
               >
                 <FaFilter />
@@ -240,13 +236,13 @@ const Notifications = () => {
                 Restaurants
                 <div className="fixed top-24 w-52 text-right"></div>
               </h2>
-              <div className="w-full flex">
+              {/* <div className="w-full flex">
                 <input
                   type="text"
                   placeholder="Search on Restaurant"
                   className="flex-1 rounded  focus:border-black my-1 ps-2 focus:outline-none"
                 />
-              </div>
+              </div> */}
 
               <ul className="space-y-1 overflow-x-hidden overflow-y-scroll h-[70%]">
                 {notifys ? (
@@ -258,20 +254,28 @@ const Notifications = () => {
                           className="py-1 ps-1 rounded bg-gray-100 relative cursor-pointer flex pe-[70px]"
                           onMouseEnter={() => setHoveredItem(el._id)}
                           onMouseLeave={() => setHoveredItem(null)}
+                          onClick={() => {
+                            handleItemClick(el._id);
+                          }}
                         >
                           {el.metadata.isViewed === false && (
                             <span className="text-red-500 font-bold mr-2">
                               ●
                             </span>
                           )}
-                          <div className=" ">{el.message}</div>
+                          <div className=" ">
+                            {el.message}{" "}
+                            <span className={dateBadgeStyleClass}>
+                              {new Date(el.timestamp).toLocaleDateString()}
+                            </span>{" "}
+                          </div>
 
-                          <div className="flex gap-1 absolute end-0 top-1">
+                          <div className="flex  gap-1 absolute end-0 top-1">
                             {actionBtn.accept(el._id)}
                             {actionBtn.reject(el._id)}
                             <IoInformationCircleOutline
                               className=" text-xl"
-                              onClick={() => handleItemClick(el)}
+                              onClick={() => handleInfoBadgeClick(el)}
                             />
                           </div>
                           {hoveredItem === el._id && (
@@ -284,6 +288,8 @@ const Notifications = () => {
                               </p>
                             </div>
                           )}
+
+                          {/* ew Date(timestamp).toLocaleString */}
                         </li>
                       )
                   )
@@ -314,13 +320,18 @@ const Notifications = () => {
                               ●
                             </span>
                           )}
-                          {el.message}
+                          <div className=" ">
+                            {el.message}{" "}
+                            <span className={dateBadgeStyleClass}>
+                              {new Date(el.timestamp).toLocaleDateString()}
+                            </span>{" "}
+                          </div>
                           <div className="flex gap-1 absolute end-0 top-1">
                             {actionBtn.accept(el._id)}
                             {actionBtn.reject(el._id)}
                             <IoInformationCircleOutline
                               className=" text-xl"
-                              onClick={() => handleItemClick(el)}
+                              onClick={() => handleInfoBadgeClick(el)}
                             />
                           </div>
                           {hoveredItem === el._id && (
@@ -359,7 +370,12 @@ const Notifications = () => {
                               ●
                             </span>
                           )}
-                          {el.message}
+                          <div className=" ">
+                            {el.message}{" "}
+                            <span className={dateBadgeStyleClass}>
+                              {new Date(el.timestamp).toLocaleDateString()}
+                            </span>{" "}
+                          </div>
                           <div className="flex gap-2  absolute end-0 top-1">
                             {actionBtn.accept(el._id)}
                             {actionBtn.reject(el._id)}
@@ -394,7 +410,12 @@ const Notifications = () => {
                           key={index}
                           className="p-1 rounded bg-gray-100 relative cursor-pointer flex pe-[90px]"
                         >
-                          {el.message}{" "}
+                          <div className=" ">
+                            {el.message}{" "}
+                            <span className={dateBadgeStyleClass}>
+                              {new Date(el.timestamp).toLocaleDateString()}
+                            </span>{" "}
+                          </div>
                           {/* {note.resolved && (
                         <span className="text-green-500 font-bold">✔</span>
                       )} */}
@@ -430,7 +451,12 @@ const Notifications = () => {
                               ●
                             </span>
                           )}
-                          {el.message}{" "}
+                          <div className=" ">
+                            {el.message}{" "}
+                            <span className={dateBadgeStyleClass}>
+                              {new Date(el.timestamp).toLocaleDateString()}
+                            </span>{" "}
+                          </div>
                           <div className="flex gap-2  absolute end-0 top-1">
                             {actionBtn.accept(el._id)}
                             {actionBtn.reject(el._id)}
@@ -475,7 +501,12 @@ const Notifications = () => {
                               ●
                             </span>
                           )}
-                          <div>{el.message}</div>
+                          <div className=" ">
+                            {el.message}{" "}
+                            <span className={dateBadgeStyleClass}>
+                              {new Date(el.timestamp).toLocaleDateString()}
+                            </span>{" "}
+                          </div>
                           <div className="flex gap-2 absolute end-0 top-1 ">
                             {actionBtn.accept(el._id)}
                             {actionBtn.reject(el._id)}
@@ -521,7 +552,12 @@ const Notifications = () => {
                               ●
                             </span>
                           )}
-                          <div>{el.message}</div>
+                          <div className=" ">
+                            {el.message}{" "}
+                            <span className={dateBadgeStyleClass}>
+                              {new Date(el.timestamp).toLocaleDateString()}
+                            </span>{" "}
+                          </div>
                           <div className="flex gap-2 absolute end-0 top-1 ">
                             {actionBtn.accept(el._id)}
                             {actionBtn.reject(el._id)}
@@ -566,7 +602,12 @@ const Notifications = () => {
                               ●
                             </span>
                           )}
-                          <div>{el.message}</div>
+                          <div className=" ">
+                            {el.message}{" "}
+                            <span className={dateBadgeStyleClass}>
+                              {new Date(el.timestamp).toLocaleDateString()}
+                            </span>{" "}
+                          </div>
                           <div className="flex gap-2 absolute end-0 top-1 ">
                             {actionBtn.accept(el._id)}
                             {actionBtn.reject(el._id)}
@@ -610,7 +651,12 @@ const Notifications = () => {
                               ●
                             </span>
                           )}
-                          <div>{el.message}</div>
+                          <div className=" ">
+                            {el.message}{" "}
+                            <span className={dateBadgeStyleClass}>
+                              {new Date(el.timestamp).toLocaleDateString()}
+                            </span>{" "}
+                          </div>
                           <div className="flex gap-2 absolute end-0 top-1 ">
                             {actionBtn.accept(el._id)}
                             {actionBtn.reject(el._id)}
@@ -637,7 +683,12 @@ const Notifications = () => {
                           className="p-1 rounded bg-gray-100 relative cursor-pointer flex  pe-[70px]"
                           // onClick={() => handleItemClick(note, "moderator")}
                         >
-                          {el.message}{" "}
+                          <div className=" ">
+                            {el.message}{" "}
+                            <span className={dateBadgeStyleClass}>
+                              {new Date(el.timestamp).toLocaleDateString()}
+                            </span>{" "}
+                          </div>
                           <div className="flex gap-2 absolute top-1 end-0">
                             {actionBtn.accept(el._id)}
                             {actionBtn.reject(el._id)}
@@ -656,31 +707,24 @@ const Notifications = () => {
               <div className="bg-white p-4 rounded shadow-md max-w-lg w-full">
                 <h3 className="text-lg font-bold mb-2">Details</h3>
                 <p>
-                  <strong>Why:</strong> {selectedDetails.why}
+                  <strong>Level: {selectedDetails.Level}</strong>
                 </p>
                 <p>
-                  <strong>When:</strong> {selectedDetails.when}
+                  <strong>Message: {selectedDetails.Message}</strong>
                 </p>
                 <p>
-                  <strong>Who:</strong> {selectedDetails.who}
+                  <strong>Notify_At: {selectedDetails.Date}</strong>
                 </p>
                 <p>
-                  <strong>Address:</strong> {selectedDetails.address}
+                  <strong>Action: {selectedDetails.Action}</strong>
                 </p>
                 <p>
-                  <strong>Email:</strong> {selectedDetails.email}
+                  <strong>Actor: {selectedDetails.Actor}</strong>
                 </p>
                 <p>
-                  <strong>Phone:</strong> {selectedDetails.phone}
-                </p>
-                <p>
-                  <strong>Description:</strong> {selectedDetails.description}
-                </p>
-                <p>
-                  <strong>Last Update:</strong> {selectedDetails.lastUpdate}
-                </p>
-                <p>
-                  <strong>Status:</strong> {selectedDetails.status}
+                  <strong>
+                    Notification Type: {selectedDetails.notify_type}
+                  </strong>
                 </p>
                 <div className="mt-2 text-right">
                   <button

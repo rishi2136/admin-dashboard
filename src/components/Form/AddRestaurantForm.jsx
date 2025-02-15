@@ -119,12 +119,13 @@ const AddRestaurantForm = ({ nextStep, prevStep, setID, ID }) => {
   };
 
   const subHeadingStyle = `col-span-2 text-lg text-semibold`;
+  const inputStyle = `ps-2 border rounded-xl focus:border-black active:outline-none`;
 
   return (
     <div className="bg-white rounded-lg shadow-lg p-6 h-full">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className={`block gap-2 col-span-1 md:col-span md:grid`}
+        className={`block gap-2  col-span-1 md:col-span md:grid`}
       >
         <div className={css.formGroup}>
           <label className="m-0 ms-1" htmlFor="firmName">
@@ -133,6 +134,7 @@ const AddRestaurantForm = ({ nextStep, prevStep, setID, ID }) => {
           <input
             type="text"
             id="firmName"
+            className={inputStyle}
             {...register("firmName", { required: true })}
             placeholder="Enter your restaurant name"
           />
@@ -148,6 +150,7 @@ const AddRestaurantForm = ({ nextStep, prevStep, setID, ID }) => {
           <input
             type="text"
             id="ownerName"
+            className={inputStyle}
             {...register("ownerName", { required: true })}
             placeholder="Enter the owner's name"
           />
@@ -163,6 +166,7 @@ const AddRestaurantForm = ({ nextStep, prevStep, setID, ID }) => {
           <input
             type="email"
             id="email"
+            className={inputStyle}
             placeholder="Enter your email address"
             {...register("email", { required: true })}
           />
@@ -177,8 +181,10 @@ const AddRestaurantForm = ({ nextStep, prevStep, setID, ID }) => {
           </label>
           <div className={css.phoneWrapper}>
             <PhoneInput
-              className="w-full"
+              // className="w-full"
+              className={` w-full  ${inputStyle}`}
               name="phoneNumber"
+              style={{ border: "black" }}
               placeholder="Enter your phone number"
               value={phoneNumber}
               onChange={setPhoneNumber}
@@ -196,6 +202,7 @@ const AddRestaurantForm = ({ nextStep, prevStep, setID, ID }) => {
           <input
             type="text"
             id="location"
+            className={inputStyle}
             placeholder="Search for area or street name"
             {...register("location", { required: true })}
           />
@@ -211,6 +218,7 @@ const AddRestaurantForm = ({ nextStep, prevStep, setID, ID }) => {
           <input
             type="text"
             id="area"
+            className={inputStyle}
             placeholder="Enter your locality"
             {...register("area", { required: true })}
           />
@@ -226,6 +234,7 @@ const AddRestaurantForm = ({ nextStep, prevStep, setID, ID }) => {
           <input
             type="text"
             id="city"
+            className={inputStyle}
             placeholder="Enter your city"
             {...register("city", { required: true })}
           />
@@ -254,6 +263,9 @@ const AddRestaurantForm = ({ nextStep, prevStep, setID, ID }) => {
           <input
             type="number"
             id="ratings"
+            className={inputStyle}
+            min={0}
+            max={5}
             placeholder="i.e in between 0 to 5"
             {...register("ratings", { min: 0, max: 5 })}
           />
@@ -268,6 +280,9 @@ const AddRestaurantForm = ({ nextStep, prevStep, setID, ID }) => {
           <input
             type="number"
             id="popularity"
+            className={inputStyle}
+            min={0}
+            max={10}
             placeholder="i.e in between 0 to 10"
             {...register("popularity", { min: 0, max: 10 })}
           />
