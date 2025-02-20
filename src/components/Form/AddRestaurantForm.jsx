@@ -47,16 +47,6 @@ const AddRestaurantForm = ({ nextStep, prevStep, setID, ID }) => {
     "wifi",
   ];
 
-  // let days = [
-  //   "Sunday",
-  //   "Monday",
-  //   "Tuesday",
-  //   "Wednesday",
-  //   "Thursday",
-  //   "Friday",
-  //   "Saturday",
-  // ];
-
   const onSubmit = async (data) => {
     const formData = new FormData();
     setIsLoading(true);
