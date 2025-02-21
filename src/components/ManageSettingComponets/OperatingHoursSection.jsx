@@ -22,10 +22,18 @@ export function OperatingHoursSection({ timings, handleTimingChange, useMonday, 
           type="checkbox"
           id="useMonday"
           checked={useMonday}
+<<<<<<< HEAD
           onChange={(e) => {
             setUseMonday(e.target.checked);
             if (e.target.checked) applyMondayTiming();
           }}
+=======
+          // onChange={(e) => {
+          //   setUseMonday(e.target.checked);
+          //   if (e.target.checked) applyMondayTiming();
+          // }}
+          onChange={(e) => setUseMonday(e.target.checked)}
+>>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
           className="rounded text-blue-600 focus:ring-blue-500 h-3 w-3"
         />
         <label htmlFor="useMonday" className="font-medium text-gray-700 text-sm">

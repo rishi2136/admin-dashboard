@@ -63,7 +63,12 @@ const CommentList = ({ fullWidth = true, maxHeight = true }) => {
     (reviews.reduce((sum, review) => sum + review.rating, 0) / reviews.length).toFixed(1);
 
   return (
+<<<<<<< HEAD
     <div className={`${fullWidth ? "w-full" : "w-1/2"} ${maxHeight ? "" : "max-h-[70vh]"} overflow-auto`}>
+=======
+    // ${fullWidth ? "w-full" : "w-1/2"} ${maxHeight ? "" : "max-h-[70vh]"}
+    <div className={`overflow-auto h-screen overflow-y-auto ${fullWidth ? "w-full" : "w-1/2"} ${maxHeight ? "" : "max-h-[50vh]"}`}>
+>>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
       {/* Average Rating and Filters */}
       <div className="flex justify-between items-center mb-4">
         <div className="flex items-center gap-2">
@@ -80,9 +85,15 @@ const CommentList = ({ fullWidth = true, maxHeight = true }) => {
           >
             <IoMdSwitch />
           </button>
+<<<<<<< HEAD
           <button className="rounded-2xl border-0 gap-1 text-[14px] px-2 py-1 bg-gray-100">
             <FaUndo />
           </button>
+=======
+          {/* <button className="rounded-2xl border-0 gap-1 text-[14px] px-2 py-1 bg-gray-100">
+            <FaUndo />
+          </button> */}
+>>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
           <button
             className="rounded-2xl border-0 gap-1 text-[14px] px-2 py-1 bg-gray-100"
             onClick={handleRatingSort}

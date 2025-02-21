@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // import React, { useState } from "react";
 // import { FiPlusCircle, FiTrash2 } from "react-icons/fi";
 // import axios from "axios"
@@ -359,6 +360,8 @@
 // export default AddMeal;
 
 const URL = import.meta.env.VITE_SERVER_URL;
+=======
+>>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { FiEdit, FiPlus, FiTrash2, FiAlertCircle } from "react-icons/fi";
@@ -376,6 +379,12 @@ const ManageTiffin = () => {
   const [editingItem, setEditingItem] = useState(null);
   const [isFlexibleDates, setIsFlexibleDates] = useState(false);
   const [serviceDays, setServiceDays] = useState([]);
+<<<<<<< HEAD
+=======
+  const [Tiffin, setTiffin] = useState();
+  const ownerEmail = localStorage.getItem("ownerEmail");
+  console.log(ownerEmail);
+>>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
 
   const daysOfWeek = [
     "Sunday",
@@ -388,6 +397,7 @@ const ManageTiffin = () => {
   ];
 
   useEffect(() => {
+<<<<<<< HEAD
     const mapMealPlans = async () => {
       const response = await axios.get(`${URL}/api/menu`);
       setPlans(response.data.plans);
@@ -400,6 +410,40 @@ const ManageTiffin = () => {
       // console.log("The Type is:", response.data.mealTypes);
     };
     mapMealPlans();
+=======
+    const mapMenu = async () => {
+      const response = await axios.get(
+        `${import.meta.env.VITE_SERVER_URL}/api/menu/${ownerEmail}`
+      );
+      const response1 = await axios.get(
+        `${import.meta.env.VITE_SERVER_URL}/api/tiffin/${ownerEmail}`
+      );
+      const data = response1.data.data;
+      console.log("Responce1:", data);
+      setPlans(response.data.plans);
+      setServiceDays(response.data.serviceDays || []);
+      setIsFlexibleDates(response.data.isFlexibleDates || false);
+      setMealTypes(response.data.mealTypes);
+      setSelectedPlan(response.data.plans[0]._id);
+      setSelectedMealType(response.data.mealTypes[0].mealTypeId);
+      // console.log("The Plans is:", response.data.plans);
+      // console.log("The Type is:", response.data.mealTypes);
+      setTiffin(data.kitchenName);
+    };
+    mapMenu();
+  }, []);
+
+  useEffect(() => {
+    const mapTiffin = async () => {
+      const response1 = await axios.get(
+        `${import.meta.env.VITE_SERVER_URL}/api/tiffin/${ownerEmail}`
+      );
+      const data = response1.data.data;
+      console.log("Responce1:", data);
+      setTiffin(data.kitchenName);
+    };
+    mapTiffin();
+>>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
   }, []);
 
   // Handle checkbox toggle
@@ -417,7 +461,13 @@ const ManageTiffin = () => {
   const handleSaveMealDays = async () => {
     try {
       const response = await axios.post(
+<<<<<<< HEAD
         `${URL}/api/manage_mealdays&Flexidates`,
+=======
+        `${
+          import.meta.env.VITE_SERVER_URL
+        }/api/manage_mealdays&Flexidates/${ownerEmail}`,
+>>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
         {
           serviceDays,
           isFlexibleDates,
@@ -432,7 +482,11 @@ const ManageTiffin = () => {
   };
 
   // Save meal days to the backend
+<<<<<<< HEAD
   console.log("Plan is", plans);
+=======
+  // console.log("Plan is", plans)
+>>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
   const handleEdit = (item, type) => {
     setIsEditing(true);
     setEditingItem({ ...item, type });
@@ -490,11 +544,27 @@ const ManageTiffin = () => {
     try {
       if (type === "plan") {
         // Call the delete plan route
+<<<<<<< HEAD
         await axios.delete(`${URL}/api/delete-plan/${item._id}`);
         setPlans(plans.filter((plan) => plan._id !== item._id));
       } else if (type === "mealType") {
         // Call the delete meal type route
         await axios.delete(`${URL}/api/delete-meal-type/${item.mealTypeId}`);
+=======
+        await axios.delete(
+          `${import.meta.env.VITE_SERVER_URL}/api/delete-plan/${
+            item._id
+          }/${ownerEmail}`
+        );
+        setPlans(plans.filter((plan) => plan._id !== item._id));
+      } else if (type === "mealType") {
+        // Call the delete meal type route
+        await axios.delete(
+          `${import.meta.env.VITE_SERVER_URL}/api/delete-meal-type/${
+            item.mealTypeId
+          }/${ownerEmail}`
+        );
+>>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
         setMealTypes(
           mealTypes.filter(
             (mealType) => mealType.mealTypeId !== item.mealTypeId
@@ -513,7 +583,13 @@ const ManageTiffin = () => {
 
   const refreshData = async () => {
     try {
+<<<<<<< HEAD
       const response = await axios.get(`${URL}/api/menu`);
+=======
+      const response = await axios.get(
+        `${import.meta.env.VITE_SERVER_URL}/api/menu/${ownerEmail}`
+      );
+>>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
       const menuData = response.data;
       setPlans(menuData.plans);
       setMealTypes(menuData.mealTypes);
@@ -526,14 +602,25 @@ const ManageTiffin = () => {
     // Check if any plan associated with the meal type has a missing price
     return plans.some((plan) => !type.prices || !type.prices[plan._id]);
   };
+<<<<<<< HEAD
 
   return (
     <div className="font-inter h-full overflow-auto w-full mx-auto p-1">
+=======
+  console.log("Tiffin:", Tiffin);
+
+  return (
+    <div className="font-inter h-screen overflow-y-auto w-full mx-auto p-1">
+>>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
       <div className="bg-white w-full mx-auto mb-4">
         <div className="flex flex-col md:flex-row gap-4">
           <ImageSelector />
           <div className="flex-1 space-y-4">
+<<<<<<< HEAD
             <h1 className="text-3xl font-medium">Krupa Mess & Tiffins</h1>
+=======
+            <h1 className="text-3xl font-medium">{Tiffin}</h1>
+>>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
             <div className="">
               <div className="flex gap-2 items-center">
                 <label className="block text-sm font-medium text-gray-700 mb-1">

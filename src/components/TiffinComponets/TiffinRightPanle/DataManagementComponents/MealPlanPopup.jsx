@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
+<<<<<<< HEAD
 const URL = import.meta.env.VITE_SERVER_URL;
+=======
+>>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
 
 const predefinedPlans = [
   { label: "Trial (1Day)", value: 1 },
@@ -21,6 +24,10 @@ const MealPlanPopup = ({
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [filteredSuggestions, setFilteredSuggestions] =
     useState(predefinedPlans);
+<<<<<<< HEAD
+=======
+  const ownerEmail = localStorage.getItem("ownerEmail");
+>>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
 
   const checkForDuplicates = () => {
     const editingPlanId = editingItem._id;
@@ -47,6 +54,7 @@ const MealPlanPopup = ({
     try {
       if (editingItem._id) {
         console.log("editingItem._id", editingItem._id);
+<<<<<<< HEAD
         await axios.put(`${URL}/api/edit-meal-plan/${editingItem._id}`, {
           label: editingItem.label,
         });
@@ -55,6 +63,24 @@ const MealPlanPopup = ({
         await axios.post(`${URL}/api/add-plan`, {
           label: editingItem.label,
         });
+=======
+        await axios.put(
+          `${import.meta.env.VITE_SERVER_URL}/api/edit-meal-plan/${
+            editingItem._id
+          }/${ownerEmail}`,
+          {
+            label: editingItem.label,
+          }
+        );
+      } else {
+        console.log("editingItem._id", editingItem._id);
+        await axios.post(
+          `${import.meta.env.VITE_SERVER_URL}/api/add-plan/${ownerEmail}`,
+          {
+            label: editingItem.label,
+          }
+        );
+>>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
       }
 
       if (refreshData) {

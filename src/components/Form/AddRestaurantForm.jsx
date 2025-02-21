@@ -3,11 +3,15 @@ import css from "./AddRestaurantForm.module.css";
 import { useForm } from "react-hook-form";
 import CustomSelect from "./utils/CustomSelect";
 import axios from "axios";
+<<<<<<< HEAD
 import HandleCustomOption from "./HandleCustomOption";
 import OperationalTime from "./utils/OperationalTime";
 import PhoneInput from "react-phone-number-input";
 import TiffinSettings from "../ManageSettingComponets/TiffinSettings";
 import RestaurantTiming from "./RestaurantTiming";
+=======
+import PhoneInput from "react-phone-number-input";
+>>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
 const URL = import.meta.env.VITE_SERVER_URL;
 
 const AddRestaurantForm = ({ nextStep, prevStep, setID, ID }) => {
@@ -51,6 +55,7 @@ const AddRestaurantForm = ({ nextStep, prevStep, setID, ID }) => {
     "wifi",
   ];
 
+<<<<<<< HEAD
   // let days = [
   //   "Sunday",
   //   "Monday",
@@ -61,6 +66,8 @@ const AddRestaurantForm = ({ nextStep, prevStep, setID, ID }) => {
   //   "Saturday",
   // ];
 
+=======
+>>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
   const onSubmit = async (data) => {
     const formData = new FormData();
     setIsLoading(true);
@@ -83,12 +90,20 @@ const AddRestaurantForm = ({ nextStep, prevStep, setID, ID }) => {
 
     // Append features array
     features.forEach((feature, index) => {
+<<<<<<< HEAD
       formData.append(`otherServices[${index}]`, feature);
+=======
+      formData.append(`otherServices`, feature);
+>>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
     });
 
     // Append cuisines array
     cuisines.forEach((cuisine, index) => {
+<<<<<<< HEAD
       formData.append(`cuisines[${index}]`, cuisine);
+=======
+      formData.append(`cuisines`, cuisine);
+>>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
     });
 
     formData.append("phoneNumber", phoneNumber);
@@ -110,8 +125,13 @@ const AddRestaurantForm = ({ nextStep, prevStep, setID, ID }) => {
       setID(res.data._id);
       if (res.data._id !== null) {
         nextStep();
+<<<<<<< HEAD
       }
       alert("You got the response");
+=======
+        alert("Restaurant registered successfully");
+      }
+>>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
     } catch (err) {
       if (err.name === "MulterError") {
         alert(err.message);
@@ -123,6 +143,7 @@ const AddRestaurantForm = ({ nextStep, prevStep, setID, ID }) => {
   };
 
   const subHeadingStyle = `col-span-2 text-lg text-semibold`;
+<<<<<<< HEAD
 
   return (
     <div className={css.diningContainer}>
@@ -526,10 +547,403 @@ const AddRestaurantForm = ({ nextStep, prevStep, setID, ID }) => {
           </form>
         </div>
       </div>
+=======
+  const inputStyle = `ps-2 border rounded-xl focus:border-black active:outline-none`;
+
+  return (
+    <div className="bg-white rounded-lg shadow-lg p-6 h-full">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className={`block gap-2  col-span-1 md:col-span md:grid`}
+      >
+        <div className={css.formGroup}>
+          <label className="m-0 ms-1" htmlFor="firmName">
+            Restaurant Name *
+          </label>
+          <input
+            type="text"
+            id="firmName"
+            className={inputStyle}
+            {...register("firmName", { required: true })}
+            placeholder="Enter your restaurant name"
+          />
+          {errors.firmName && (
+            <span className="text-red-500">This field is required</span>
+          )}
+        </div>
+
+        <div className={css.formGroup}>
+          <label className="m-0 ms-1" htmlFor="ownerName">
+            Owner's Full Name *
+          </label>
+          <input
+            type="text"
+            id="ownerName"
+            className={inputStyle}
+            {...register("ownerName", { required: true })}
+            placeholder="Enter the owner's name"
+          />
+          {errors.ownerName && (
+            <span className="text-red-500">This field is required</span>
+          )}
+        </div>
+
+        <div className={css.formGroup}>
+          <label className="m-0 ms-1" htmlFor="email">
+            Email Address *
+          </label>
+          <input
+            type="email"
+            id="email"
+            className={inputStyle}
+            placeholder="Enter your email address"
+            {...register("email", { required: true })}
+          />
+          {errors.email && (
+            <span className="text-red-500">This field is required</span>
+          )}
+        </div>
+
+        <div className={css.formGroup}>
+          <label className="m-0 ms-1" htmlFor="phoneNumber">
+            Phone Number *
+          </label>
+          <div className={css.phoneWrapper}>
+            <PhoneInput
+              // className="w-full"
+              className={` w-full  ${inputStyle}`}
+              name="phoneNumber"
+              style={{ border: "black" }}
+              placeholder="Enter your phone number"
+              value={phoneNumber}
+              onChange={setPhoneNumber}
+            />
+          </div>
+          {errors.phoneNumber && (
+            <span className="text-red-500">This field is required</span>
+          )}
+        </div>
+
+        <div className={css.formGroup}>
+          <label className="m-0 ms-1" htmlFor="location">
+            Restaurant Location *
+          </label>
+          <input
+            type="text"
+            id="location"
+            className={inputStyle}
+            placeholder="Search for area or street name"
+            {...register("location", { required: true })}
+          />
+          {errors.location && (
+            <span className="text-red-500">This field is required</span>
+          )}
+        </div>
+
+        <div className={css.formGroup}>
+          <label className="m-0 ms-1" htmlFor="area">
+            Area / Sector / Locality *
+          </label>
+          <input
+            type="text"
+            id="area"
+            className={inputStyle}
+            placeholder="Enter your locality"
+            {...register("area", { required: true })}
+          />
+          {errors.area && (
+            <span className="text-red-500">This field is required</span>
+          )}
+        </div>
+
+        <div className={css.formGroup}>
+          <label className="m-0 ms-1" htmlFor="city">
+            City *
+          </label>
+          <input
+            type="text"
+            id="city"
+            className={inputStyle}
+            placeholder="Enter your city"
+            {...register("city", { required: true })}
+          />
+          {errors.city && (
+            <span className="text-red-500">This field is required</span>
+          )}
+        </div>
+
+        <div className=" border border-dashed rounded-sm flex flex-col gap-2 justify-center">
+          <input
+            type="file"
+            id="image"
+            className="border-none  self-center justify-self-center"
+            {...register("image", { required: true })}
+          />
+          <div className="text-center">Upload file less than 2 MB</div>
+          {errors.image && (
+            <span className="text-red-500">This field is required</span>
+          )}
+        </div>
+
+        <div className={css.formGroup}>
+          <label className="m-0 ms-1" htmlFor="city">
+            Ratings
+          </label>
+          <input
+            type="number"
+            id="ratings"
+            className={inputStyle}
+            min={0}
+            max={5}
+            placeholder="i.e in between 0 to 5"
+            {...register("ratings", { min: 0, max: 5 })}
+          />
+          {errors.city && (
+            <span className="text-red-500">This field is required</span>
+          )}
+        </div>
+        <div className={css.formGroup}>
+          <label className="m-0 ms-1" htmlFor="city">
+            Popularity
+          </label>
+          <input
+            type="number"
+            id="popularity"
+            className={inputStyle}
+            min={0}
+            max={10}
+            placeholder="i.e in between 0 to 10"
+            {...register("popularity", { min: 0, max: 10 })}
+          />
+          {errors.city && (
+            <span className="text-red-500">This field is required</span>
+          )}
+        </div>
+        <div>
+          <div>Choose the category</div>
+          <div className="flex gap-2 items-end">
+            <div className="flex items-center">
+              <input
+                type="checkbox"
+                name="veg"
+                value={"veg"}
+                {...register("category")}
+              />
+              <label className="m-0 ms-1" htmlFor="veg">
+                Veg
+              </label>
+            </div>
+
+            <div className="flex items-center">
+              <input
+                type="checkbox"
+                name="non-veg"
+                value={"non-veg"}
+                {...register("category")}
+              />
+              <label className="m-0 ms-1" htmlFor="non-veg">
+                Non- veg
+              </label>
+            </div>
+
+            <div className="flex items-center">
+              <input
+                type="checkbox"
+                name="both"
+                value={"both"}
+                {...register("category")}
+              />
+              <label className="m-0 ms-1" htmlFor="both">
+                both
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div>Available Payment Options</div>
+          <div className="flex gap-2 items-end">
+            <div className="flex items-center">
+              <input
+                type="checkbox"
+                name="creditCard"
+                value={"creditCard"}
+                {...register("paymentOption")}
+              />
+              <label className="m-0 ms-1" htmlFor="creditCard">
+                Credit Card
+              </label>
+            </div>
+
+            <div className="flex items-center">
+              <input
+                type="checkbox"
+                name="debitCard"
+                value={"debitCard"}
+                {...register("paymentOption")}
+              />
+              <label className="m-0 ms-1" htmlFor="debitCard">
+                Debit Card
+              </label>
+            </div>
+
+            <div className="flex items-center">
+              <input
+                type="checkbox"
+                name="onlinePayment"
+                value={"onlinePayment"}
+                {...register("paymentOption")}
+              />
+              <label className="m-0 ms-1" htmlFor="onlinePayment">
+                Online Payment
+              </label>
+            </div>
+            <div className="flex items-center">
+              <input
+                type="checkbox"
+                name="bankTransfer"
+                value={"bankTransfer"}
+                {...register("paymentOption")}
+              />
+              <label className="m-0 ms-1" htmlFor="bankTransfer">
+                Bank Transfer
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div className="">
+          <div>Services Offered</div>
+          <div className="flex gap-2 items-end">
+            <div className="flex items-center">
+              <input
+                type="checkbox"
+                name="nightLife"
+                value={"nightLife"}
+                {...register("services")}
+              />
+              <label className="m-0 ms-1" htmlFor="creditCard">
+                Night Life
+              </label>
+            </div>
+
+            <div className="flex items-center">
+              <input
+                type="checkbox"
+                name="dineOut"
+                value={"dineOut"}
+                {...register("services")}
+              />
+              <label className="m-0 ms-1" htmlFor="dineOut">
+                Dine Out
+              </label>
+            </div>
+
+            <div className="flex items-center">
+              <input
+                type="checkbox"
+                name="delivery"
+                value={"delivery"}
+                {...register("services")}
+              />
+              <label className="m-0 ms-1" htmlFor="delivery">
+                Delivery
+              </label>
+            </div>
+            <div className="flex items-center">
+              <input
+                type="checkbox"
+                name="tiffin"
+                value={"tiffin"}
+                {...register("services")}
+              />
+              <label className="m-0 ms-1" htmlFor="tiffin">
+                Tiffin
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div className="">
+          <div>Available Dietary</div>
+          <div className="flex gap-2 items-end">
+            <div className="flex items-center">
+              <input type="checkbox" value="halal" {...register("dietary")} />
+              <label className="m-0 ms-1" htmlFor="halal">
+                Halal
+              </label>
+            </div>
+
+            <div className="flex items-center">
+              <input
+                type="checkbox"
+                value="gluten-free"
+                {...register("dietary")}
+              />
+              <label className="m-0 ms-1" htmlFor="gluten-free">
+                Gluten-Free
+              </label>
+            </div>
+
+            <div className="flex items-center">
+              <input type="checkbox" value="vegan" {...register("dietary")} />
+              <label className="m-0 ms-1" htmlFor="vegan">
+                Vegan
+              </label>
+            </div>
+
+            <div className="flex items-center">
+              <input
+                type="checkbox"
+                value="nut-free"
+                {...register("dietary")}
+              />
+              <label className="m-0 ms-1" htmlFor="nut-free">
+                Nut-Free
+              </label>
+            </div>
+
+            <div className="flex items-center">
+              <input
+                type="checkbox"
+                value="dairy-free"
+                {...register("dietary")}
+              />
+              <label className="m-0 ms-1" htmlFor="dairy-free">
+                Dairy-Free
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <CustomSelect
+          listedCuisines={listedCuisines}
+          cuisines={cuisines}
+          setCuisines={setCuisines}
+          headingText="Add Cuisines"
+        />
+        <CustomSelect
+          listedCuisines={listedFeatures}
+          cuisines={features}
+          setCuisines={setFeatures}
+          headingText="Other Services"
+        />
+
+        <button type="submit" className={css.submitButton}>
+          {isLoading ? "Loading..." : ID ? "Submitted" : "Submit"}
+        </button>
+        {ID && (
+          <button className={css.submitButton} onClick={nextStep}>
+            Next
+          </button>
+        )}
+      </form>
+>>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
     </div>
   );
 };
 
+<<<<<<< HEAD
 // const Days = ({ days, operationalTime, setOperationalTime }) => {
 //   return (
 //     <div>
@@ -545,4 +959,6 @@ const AddRestaurantForm = ({ nextStep, prevStep, setID, ID }) => {
 //   );
 // };
 
+=======
+>>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
 export default AddRestaurantForm;

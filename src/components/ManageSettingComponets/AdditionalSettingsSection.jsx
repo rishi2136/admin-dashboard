@@ -11,7 +11,11 @@ const inputItems = [
   { id: 'freeDelivery', label: 'Free Delivery', icon: FaTruck, placeholder: 'E.g., Orders above ₹500' },
   { id: 'deliveryCity', label: 'Delivery City', icon: FaMapMarkerAlt, placeholder: 'Enter city name' },
   { id: 'specialMealDay', label: 'Special Meal Day', icon: FaCalendarAlt, placeholder: 'E.g., Sunday' },
+<<<<<<< HEAD
   { id: 'location', label: 'Location', icon: FaMapMarkerAlt, placeholder: 'Enter your location' },
+=======
+  // { id: 'location', label: 'Location', icon: FaMapMarkerAlt, placeholder: 'Enter your location' },
+>>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
 ];
 
 export function AdditionalSettingsSection({ additionalSettings, handleAdditionalSettingChange }) {

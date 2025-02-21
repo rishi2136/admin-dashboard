@@ -16,11 +16,15 @@ export default function DashboardLayout() {
     currentPage = "Support";
   } else if (location.pathname === "/help") {
     currentPage = "Help";
+<<<<<<< HEAD
 
   }else if(location.pathname==="/faq"){
     currentPage="faqs"
   }
    else if (location.pathname === "/historylogs") {
+=======
+  } else if (location.pathname === "/historylogs") {
+>>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
     currentPage = "History Logs";
   } else if (location.pathname === "/taxes-charges") { // Rename to Taxes and Charges
     currentPage = "Taxes and Charges";

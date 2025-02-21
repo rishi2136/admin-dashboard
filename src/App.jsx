@@ -7,7 +7,11 @@ import RestaurantList from "./pages/RestaurantList";
 import Upload from "./pages/Upload";
 import EventList from "./pages/EventList";
 import ChatPanel from "./pages/ChatPanel";
+<<<<<<< HEAD
 import UserAccessControl from "./components/Admin/UserAccessControl";
+=======
+import UserAccessControl from "./pages/UserAccessControl";
+>>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
 import FormSwitch from "./components/Form/index/FormSwitch";
 
 import Notifications from "./pages/Notifications";
@@ -19,7 +23,10 @@ import Support from "./pages/Support";
 import ManageAdmin from "./pages/ManageAdmin";
 import OrderDetails from "./cards/OrderDetails";
 // import AddNewRestaurant from "./pages/AddNewRestaurant";
+<<<<<<< HEAD
 import RestuarantRegistration from "./components/RestuarantRegistration/RestuarantRegistration";
+=======
+>>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
 import AddRestaurant from "./components/Form/AddRestaurant";
 import ClaimRestaurant from "./pages/ClaimRestaurant";
 import CollectionManagement from "./pages/CollectionManagement";
@@ -28,8 +35,14 @@ import TaxesAndCharges from "./pages/TaxesAndCharges";
 import EventManagement from "./pages/EventManagement";
 import AddTiffin from "./pages/Add-Tiffin";
 import TiffinRegistrationForm from "./components/Form/Tiffin/TiffinRegistrationForm";
+<<<<<<< HEAD
 import MessageDetail from "./pages/MessageDetail";
 import Faq from "./pages/Faq";
+=======
+import Signup from "./pages/Signup";
+import Login from "./pages/Login";
+
+>>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
 export const dummyOrders = [
   {
     id: 1,
@@ -191,9 +204,14 @@ export default function App() {
         <Route path="/restaurants" element={<RestaurantList />} />
         <Route path="/restaurants/comments" element={<RestaurantList />} />
         <Route path="/add-restaurant" element={<AddRestaurant />} />
+<<<<<<< HEAD
         <Route path="/switch" element={<FormSwitch />} />
         <Route path="/add-tiffin" element={<AddTiffin />} />
         <Route path="/new-restaurant" element={<RestuarantRegistration />} />
+=======
+        <Route path="/register" element={<FormSwitch />} />
+        <Route path="/add-tiffin" element={<AddTiffin />} />
+>>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
         <Route
           path="/tiffin-registration"
           element={<TiffinRegistrationForm />}
@@ -203,6 +221,11 @@ export default function App() {
         <Route path="/analytics" element={<Analytics />} />
         <Route path="/event" element={<EventManagement />} />
         <Route path="/offers" element={<Offers />} />
+<<<<<<< HEAD
+=======
+        <Route path="/sign-up" element={<Signup />} />
+        <Route path="/log-in" element={<Login />} />
+>>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
 
         {/* Orders route */}
         <Route
@@ -228,8 +251,12 @@ export default function App() {
         <Route path="/support" element={<Support />} />
         <Route path="/help" element={<Help />} />
         <Route path="/log" element={<Help />} />
+<<<<<<< HEAD
         <Route path="/message/:id" element={<MessageDetail/>}/>
         <Route path="faqs" element={<Faq/>}/>
+=======
+
+>>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
         <Route path="/control" element={<UserAccessControl />} />
         {/* Add more pages as needed */}
       </Route>
