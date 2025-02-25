@@ -340,11 +340,7 @@ export default function Sidebar() {
       </nav>
 
       {/* Bottom outlet info (slide/fade) */}
-      <div className={bottomInfoClasses}>
-        <div className="font-semibold">{outletInfo.name || "Loading..."}</div>
-        <div>{"res_id278364726"}</div>
-        <div>{"12 street, New way"}</div>
-      </div>
+     
     </div>
   );
 }
