@@ -329,7 +329,7 @@ const HistoryLogs = () => {
           </div>
 
           
-          <select
+          {/* <select
             className="border p-4 rounded w-full"
             value={filterStatus}
             onChange={(e) => setFilterStatus(e.target.value)}
@@ -338,7 +338,7 @@ const HistoryLogs = () => {
             <option value="Successful">Successful</option>
             <option value="Rejected">Rejected</option>
             <option value="Pending">Pending</option>
-          </select>
+          </select> */}
 
           
           <div className="border p-2 rounded w-full flex items-center">
@@ -355,7 +355,7 @@ const HistoryLogs = () => {
 
           
           <button
-            className="bg-gray-100 text-black px-4 py-4 rounded shadow-md hover:bg-gray-300 w-full"
+            className="bg-gray-100 text-black px-4 py-3 rounded shadow-md hover:bg-gray-300 w-full"
             onClick={handleSearch}
           >
             Search
@@ -370,7 +370,7 @@ const HistoryLogs = () => {
               <th className="border p-2">Type</th>
               <th className="border p-2">Date & Time</th>
               <th className="border p-2">Tab</th>
-              <th className="border p-2">Status</th>
+              {/* <th className="border p-2">Status</th> */}
               <th className="border p-2">Tail Action</th>
             </tr>
           </thead>
@@ -383,7 +383,7 @@ const HistoryLogs = () => {
                     <td className="border p-2">{log.type}</td>
                     <td className="border p-2">{log.time}</td>
                     <td className="border p-2">{log.tab}</td>
-                    <td className="border p-2 text-center">
+                    {/* <td className="border p-2 text-center">
                       <span className={`inline-block w-full border font-semibold px-2 py-1 rounded ${
                         log.status === "Successful" ? "text-green-700 bg-green-100" :
                         log.status === "Rejected" ? "text-red-700 bg-red-100" :
@@ -391,7 +391,7 @@ const HistoryLogs = () => {
                       }`}>
                         {log.status}
                       </span>
-                    </td>
+                    </td> */}
                     <td className="border p-2">{log.tailAction}</td>
                   </tr>
                   {expandedLog === log.id && (
@@ -414,4 +414,3 @@ const HistoryLogs = () => {
 };
 
 export default HistoryLogs;
-
