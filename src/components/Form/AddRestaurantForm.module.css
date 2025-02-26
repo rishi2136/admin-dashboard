@@ -1,9 +1,5 @@
 .diningContainer {
-<<<<<<< HEAD
-  min-height: 100vh;
-=======
   /* min-height: 100vh; */
->>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
 }
 
 .contentWrapper {
@@ -11,13 +7,8 @@
   gap: 20px;
   width: 100%;
   /* max-width: 1000px; */
-<<<<<<< HEAD
-  background: #fff;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-=======
   /* background: #fff;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); */
->>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
   overflow: hidden;
 }
 .diningContainer input {
@@ -116,12 +107,8 @@
 .formWrapper {
   width: 100%;
   flex: 1;
-<<<<<<< HEAD
-  padding: 20px;
-=======
   /* padding: 4px; */
   border: 0;
->>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
 }
 
 .header h1 {
@@ -135,16 +122,6 @@
   margin-bottom: 20px;
 }
 
-<<<<<<< HEAD
-.form {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  flex-direction: column;
-  gap: 8px;
-}
-
-=======
->>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
 .formGroup {
   display: flex;
   flex-direction: column;
@@ -160,21 +137,13 @@ input {
   padding: 10px;
   font-size: 14px;
   border: 1px solid #ccc;
-<<<<<<< HEAD
-  border-radius: 5px;
-=======
   border-radius: 20px;
->>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
 }
 
 input:focus {
   outline: none;
-<<<<<<< HEAD
-  border-color: #1747c4;
-=======
   /* border-color: #1747c4; */
   border-color: black;
->>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
 }
 
 .phoneWrapper {

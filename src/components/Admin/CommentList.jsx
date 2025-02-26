@@ -56,19 +56,11 @@ const CommentList = ({ setViewComments, viewComments, restaurantReviews }) => {
               <IoMdSwitch />
             </button>
           </Tooltip>
-<<<<<<< HEAD
-          <Tooltip text={"undo"} position="bottom">
-            <button className="rounded-2xl border-0 gap-1 text-[14px] mb-2 px-2 py-1 bg-gray-100">
-              <FaUndo />
-            </button>
-          </Tooltip>
-=======
           {/* <Tooltip text={"undo"} position="bottom">
             <button className="rounded-2xl border-0 gap-1 text-[14px] mb-2 px-2 py-1 bg-gray-100">
               <FaUndo />
             </button>
           </Tooltip> */}
->>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
           <div className="h-full flex pt-2 items-stretch">
             <Sorting list={filters} label="Filters" />
           </div>

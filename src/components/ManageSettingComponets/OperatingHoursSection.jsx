@@ -1,19 +1,28 @@
-import React from 'react';
-import TimingInput from './TimingInput';
+import React from "react";
+import TimingInput from "./TimingInput";
 
-export function OperatingHoursSection({ timings, handleTimingChange, useMonday, setUseMonday, applyMondayTiming, daysOfWeek }) {
+export function OperatingHoursSection({
+  timings,
+  handleTimingChange,
+  useMonday,
+  setUseMonday,
+  applyMondayTiming,
+  daysOfWeek,
+}) {
   return (
     <section className="bg-white rounded-lg shadow-lg p-6">
-      <h2 className="text-xl font-semibold text-gray-800 mb-4">Operating Hours</h2>
+      <h2 className="text-xl font-semibold text-gray-800 mb-4">
+        Operating Hours
+      </h2>
       <div className="grid md:grid-cols-2 grid-cols-1 gap-2">
-        {daysOfWeek.map(day => (
+        {daysOfWeek.map((day) => (
           <TimingInput
             key={day}
             day={day}
             openTime={timings[day].open}
             closeTime={timings[day].close}
-            onOpenChange={(value) => handleTimingChange(day, 'open', value)}
-            onCloseChange={(value) => handleTimingChange(day, 'close', value)}
+            onOpenChange={(value) => handleTimingChange(day, "open", value)}
+            onCloseChange={(value) => handleTimingChange(day, "close", value)}
           />
         ))}
       </div>
@@ -22,21 +31,17 @@ export function OperatingHoursSection({ timings, handleTimingChange, useMonday, 
           type="checkbox"
           id="useMonday"
           checked={useMonday}
-<<<<<<< HEAD
-          onChange={(e) => {
-            setUseMonday(e.target.checked);
-            if (e.target.checked) applyMondayTiming();
-          }}
-=======
           // onChange={(e) => {
           //   setUseMonday(e.target.checked);
           //   if (e.target.checked) applyMondayTiming();
           // }}
           onChange={(e) => setUseMonday(e.target.checked)}
->>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
           className="rounded text-blue-600 focus:ring-blue-500 h-3 w-3"
         />
-        <label htmlFor="useMonday" className="font-medium text-gray-700 text-sm">
+        <label
+          htmlFor="useMonday"
+          className="font-medium text-gray-700 text-sm"
+        >
           Use Monday's timing for all days
         </label>
       </div>

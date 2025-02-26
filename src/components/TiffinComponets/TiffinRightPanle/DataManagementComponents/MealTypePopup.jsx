@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-<<<<<<< HEAD
 const URL = import.meta.env.VITE_SERVER_URL;
-=======
->>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
 
 const predefinedMealTypeLabels = [
   "Basic Combo",
@@ -32,10 +29,7 @@ const MealTypePopup = ({
     predefinedMealTypeLabels
   );
   const [showSuggestions, setShowSuggestions] = useState(false);
-<<<<<<< HEAD
-=======
   const ownerEmail = localStorage.getItem("ownerEmail");
->>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
 
   // Tracks missing fields
   const [missingFields, setMissingFields] = useState({
@@ -46,13 +40,9 @@ const MealTypePopup = ({
 
   useEffect(() => {
     const mapMealPlans = async () => {
-<<<<<<< HEAD
-      const response = await axios.get(`${URL}/api/menu`);
-=======
       const response = await axios.get(
         `${import.meta.env.VITE_SERVER_URL}/api/menu/${ownerEmail}`
       );
->>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
       setPlans(response.data.plans);
       // console.log("The Plans is:", response.data.plans)
     };
@@ -164,23 +154,6 @@ const MealTypePopup = ({
     try {
       if (editingItem.mealTypeId) {
         // Edit Meal Type
-<<<<<<< HEAD
-        await axios.put(`${URL}/api/edit-meal-type/${editingItem.mealTypeId}`, {
-          label: editingItem.label,
-          description: editingItem.description,
-          prices: editingItem.prices,
-          applyTo,
-          selectedPlans:
-            applyTo === "all" ? Plans.map((plan) => plan.label) : selectedPlans,
-        });
-      } else {
-        // Add Meal Type
-        const mealTypeResponse = await axios.post(`${URL}/api/add-meal-type`, {
-          label: editingItem.label,
-          description: editingItem.description,
-          prices: editingItem.prices,
-        });
-=======
         await axios.put(
           `${import.meta.env.VITE_SERVER_URL}/api/edit-meal-type/${
             editingItem.mealTypeId
@@ -206,7 +179,6 @@ const MealTypePopup = ({
             prices: editingItem.prices,
           }
         );
->>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
 
         const newMealTypeId =
           mealTypeResponse.data.tiffin.menu.mealTypes.slice(-1)[0].mealTypeId;
@@ -218,16 +190,12 @@ const MealTypePopup = ({
             applyTo === "all" ? Plans.map((plan) => plan.label) : selectedPlans,
         };
 
-<<<<<<< HEAD
-        await axios.post(`${URL}/api/apply-meal-plans`, planData);
-=======
         await axios.post(
           `${
             import.meta.env.VITE_SERVER_URL
           }/api/apply-meal-plans/${ownerEmail}`,
           planData
         );
->>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
       }
 
       if (refreshData) {

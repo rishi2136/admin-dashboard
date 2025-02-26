@@ -10,6 +10,8 @@ const OrderManagement = ({ orders = [], tiffins = [], sectionTitle }) => {
   const [activeSection, setActiveSection] = useState("orders"); // State for active section
 
   const tiffinSectionRef = useRef(null); // Ref for Tiffin section
+  const DineInSectionRef = useRef(null); // Ref for Tiffin section
+  const TakeawaySectionRef = useRef(null); // Ref for Tiffin section
 
   const handleOrderClick = (orderId) => {
     setSelectedOrderId(orderId); // Set selected order for modal
@@ -183,25 +185,35 @@ const OrderManagement = ({ orders = [], tiffins = [], sectionTitle }) => {
     };
   }, []);
 
-  const scrollToTiffin = () => {
-    setActiveSection("tiffins");
-    tiffinSectionRef.current.scrollIntoView({ behavior: "smooth" });
+  const scrollToTiffin = (text) => {
+    setActiveSection(text);
+    // tiffinSectionRef.current.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
     <div className="p-0">
       {/* Header Row */}
-      <div className="sticky top-0 bg-gray-200 py-2 z-10 flex justify-center items-center relative">
+      <div className="top-0 bg-gray-200 py-2 z-10 flex justify-center items-center relative">
         <div className="flex space-x-24 justify-center items-center">
           <h2
             className={`text-lg font-semibold cursor-pointer ${
-              activeSection === "orders"
+              activeSection === "dine-in"
                 ? "text-orange-500 border-b-4 border-orange-500"
                 : "text-gray-800"
             }`}
-            onClick={() => setActiveSection("orders")}
+            onClick={() => scrollToTiffin("dine-in")}
           >
-            Orders
+            DineIn
+          </h2>
+          <h2
+            className={`text-lg font-semibold cursor-pointer ${
+              activeSection === "takeaway"
+                ? "text-orange-500 border-b-4 border-orange-500"
+                : "text-gray-800"
+            }`}
+            onClick={() => scrollToTiffin("takeaway")}
+          >
+            Takeaway
           </h2>
           <h2
             className={`text-lg font-semibold cursor-pointer ${
@@ -209,7 +221,7 @@ const OrderManagement = ({ orders = [], tiffins = [], sectionTitle }) => {
                 ? "text-orange-500 border-b-4 border-orange-500"
                 : "text-gray-800"
             }`}
-            onClick={scrollToTiffin}
+            onClick={() => scrollToTiffin("tiffins")}
           >
             Tiffins
           </h2>
@@ -233,12 +245,6 @@ const OrderManagement = ({ orders = [], tiffins = [], sectionTitle }) => {
         </div>
       </div>
 
-
-
-
-  
-
-
       {/* Modal */}
       {selectedOrderId && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
@@ -250,14 +256,16 @@ const OrderManagement = ({ orders = [], tiffins = [], sectionTitle }) => {
               text-black
               bg-white
             >
-             <IoMdClose />
+              <IoMdClose />
             </button>
 
             {ordersList
               .filter((order) => order.id === selectedOrderId)
               .map((order) => (
                 <div key={order.id}>
-                  <h3 className="text-center font-bold text-lg mb-1">Order Details</h3>
+                  <h3 className="text-center font-bold text-lg mb-1">
+                    Order Details
+                  </h3>
                   <div className="flex items-center mb-1">
                     <img
                       src={order.image}
@@ -265,7 +273,9 @@ const OrderManagement = ({ orders = [], tiffins = [], sectionTitle }) => {
                       className="w-20 h-20 object-cover rounded-full mr-4"
                     />
                     <div>
-                      <h2 className="text-lg font-semibold">{order.restaurant}</h2>
+                      <h2 className="text-lg font-semibold">
+                        {order.restaurant}
+                      </h2>
                       <p className="text-sm text-gray-600">{order.address}</p>
                     </div>
                   </div>
@@ -298,20 +308,30 @@ const OrderManagement = ({ orders = [], tiffins = [], sectionTitle }) => {
                       <p className="col-span-2">Item Total</p>
                       <p className="text-right">₹187.00</p>
 
-                      <p className="col-span-2 text-green-600">Coupon (TASTY)</p>
-                      <p className="text-right text-green-600 font-medium">-₹74.50</p>
+                      <p className="col-span-2 text-green-600">
+                        Coupon (TASTY)
+                      </p>
+                      <p className="text-right text-green-600 font-medium">
+                        -₹74.50
+                      </p>
 
                       <p className="col-span-2 mt-1">Taxes & Charges</p>
                       <p className="text-right">₹30.19</p>
 
-                      <p className="col-span-2 text-green-600">Your Total Savings</p>
-                      <p className="text-right text-green-600 font-medium">₹74.50</p>
+                      <p className="col-span-2 text-green-600">
+                        Your Total Savings
+                      </p>
+                      <p className="text-right text-green-600 font-medium">
+                        ₹74.50
+                      </p>
 
                       <p className="col-span-2 font-semibold">Grand Total</p>
                       <p className="text-right font-semibold">₹171.68</p>
                     </div>
                     <div>
-                      <h4 className="text-gray-700 font-bold mt-4">Order Details</h4>
+                      <h4 className="text-gray-700 font-bold mt-4">
+                        Order Details
+                      </h4>
                       <p>ORDER ID: 4117307093</p>
                       <p>PAYMENT: Paid</p>
                       <p>DATE: 2025-01-15</p>

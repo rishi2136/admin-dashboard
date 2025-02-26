@@ -6,6 +6,7 @@ import { MdSort } from "react-icons/md";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import { FaFilter } from "react-icons/fa6";
 import Tooltip from "../utils/Tooltip";
+import { FaCaretDown } from "react-icons/fa6";
 
 // const users = [
 //   {
@@ -187,6 +188,7 @@ const UserAccessControl = () => {
   const [userlist, setUserList] = useState([]);
   const [filterRoles, setFilterRoles] = useState([]);
   const [selectMany, setSelectMany] = useState(false);
+  const [multiAccessControl, setMultiAccessControl] = useState([]);
 
   useEffect(() => {
     const getUser = async () => {
@@ -205,19 +207,6 @@ const UserAccessControl = () => {
     };
     getUser();
   }, [toggleAccess]);
-
-  const [userInfo, setUserInfo] = useState({
-    username: "",
-    email: "",
-    isBanned: false,
-    firms: [],
-    kitchen: [],
-    events: [],
-    lastLogin: "",
-    role: ["user"],
-    created_at: "",
-    updated_at: "",
-  });
 
   // Filter users based on selected role
   // const filteredUsers =
@@ -256,6 +245,12 @@ const UserAccessControl = () => {
       setUserCollection(res.data.users);
     }
   };
+
+  const accessOptions = [
+    { label: "Admin", value: "admin" },
+    { label: "Moderator", value: "moderator" },
+    { label: "Marketing Guy", value: "marketingGuy" },
+  ];
 
   // const handleEdit = (id) => {
   //   setIsEdit((prev_id) => (prev_id === id ? -1 : id));
@@ -433,6 +428,27 @@ const UserAccessControl = () => {
 
   // console.log(userlist);
 
+  const multiAccess = async (role) => {
+    try {
+      const res = await axios.put(
+        import.meta.env.VITE_SERVER_URL + `/user/access-many`,
+        { arrayIds: userlist, newRole: role },
+        {
+          headers: {
+            token: localStorage.getItem("token"),
+          },
+        }
+      );
+      if (res.data.response === "ok") {
+        alert(res.data.message);
+        setToggleAccess((prev) => !prev);
+        setUserList([]);
+      }
+    } catch (error) {
+      console.error("Error fetching users:", error);
+    }
+  };
+
   return (
     <>
       {addUser && (
@@ -479,15 +495,8 @@ const UserAccessControl = () => {
           </div>
 
           <div className="flex">
-            {/* userlist.length > 0 && */}
-            {
+            {userlist.length > 0 && (
               <>
-                <button
-                  className="border bg-yellow-100 text-yellow-800 rounded-xl px-3 py-1"
-                  onClick={() => deleteMany()}
-                >
-                  Multi Access Control
-                </button>
                 <button
                   className="border bg-red-100 text-red-800 rounded-xl px-3 py-1"
                   onClick={() => bannedMany("delete")}
@@ -507,7 +516,28 @@ const UserAccessControl = () => {
                   Allow Many
                 </button>
               </>
-            }
+            )}
+
+            <Menu>
+              <MenuButton className="border bg-yellow-100 text-yellow-800 rounded-xl px-3 py-1 flex items-center">
+                Multi Access Control <FaCaretDown />
+              </MenuButton>
+              <MenuItems
+                anchor="bottom"
+                className="bg-white w-[160px] rounded flex flex-col border-2 "
+              >
+                {accessOptions.map(({ label, value }) => (
+                  <MenuItem key={value} className="m-0">
+                    <button
+                      className={`hover:bg-gray-100 text-start py-1 my-0  ps-2 `}
+                      onClick={() => multiAccess(value)}
+                    >
+                      {label}
+                    </button>
+                  </MenuItem>
+                ))}
+              </MenuItems>
+            </Menu>
 
             <button
               className="border bg-green-100 text-green-800 rounded-xl px-3 py-1"

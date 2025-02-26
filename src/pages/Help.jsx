@@ -1,9 +1,5 @@
 import React, { useState } from "react";
 import { FaEdit, FaTrash } from "react-icons/fa";
-<<<<<<< HEAD
-import LeftNavbar from "./LeftNavbar";
-export default function Help({ setCurrentPage }) {
-=======
 import Support from "./Support";
 
 export default function Help({ setCurrentPage }) {
@@ -49,18 +45,10 @@ export default function Help({ setCurrentPage }) {
   const handleDeleteClick = (index) => {
     setFaqs(faqs.filter((_, i) => i !== index));
   };
->>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
 
   return (
     <div className="p-1 space-y-4">
-       <div>
-<<<<<<< HEAD
-        
-        <LeftNavbar/>
-        
-      </div>
-      
-=======
+      <div>
         <Support />
       </div>
       <div className="bg-white rounded shadow p-4 space-y-3">
@@ -127,13 +115,14 @@ export default function Help({ setCurrentPage }) {
               Drag and drop a video file here
             </p>
             <p className="text-gray-500 text-sm">or</p>
-            <input type="file" accept="video/*" className="mt-2 text-gray-700" />
+            <input
+              type="file"
+              accept="video/*"
+              className="mt-2 text-gray-700"
+            />
           </div>
         </div>
       </div>
-
-     
->>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
     </div>
   );
 }

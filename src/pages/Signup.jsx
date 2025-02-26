@@ -1,14 +1,19 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import MultiSelectDropdown from "../components/UserAccessControl/MultiSelectDropdown";
 
 const Signup = ({ handleCloseClick }) => {
   const navigate = useNavigate();
+  const [selectedOptions, setSelectedOptions] = useState([]);
   let [user, setUser] = useState({
     username: "",
     password: "",
     email: "",
+    role: selectedOptions,
   });
+
+  console.log(selectedOptions);
 
   const handleChange = (evt) => {
     let { name, value } = evt.target;
@@ -20,7 +25,12 @@ const Signup = ({ handleCloseClick }) => {
     try {
       const res = await axios.post(
         import.meta.env.VITE_SERVER_URL + "/user/signup",
-        user,
+        {
+          username: user.username,
+          password: user.password,
+          email: user.email,
+          role: selectedOptions,
+        },
         {
           headers: {
             "Content-Type": "application/json",
@@ -36,6 +46,7 @@ const Signup = ({ handleCloseClick }) => {
         username: "",
         password: "",
         email: "",
+        role: [],
       });
     } catch (err) {
       console.log(err);
@@ -79,6 +90,11 @@ const Signup = ({ handleCloseClick }) => {
             value={user.password}
             onChange={handleChange}
             className="p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+          />
+
+          <MultiSelectDropdown
+            selectedOptions={selectedOptions}
+            setSelectedOptions={setSelectedOptions}
           />
 
           <button

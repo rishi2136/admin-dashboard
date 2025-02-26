@@ -1,13 +1,3 @@
-<<<<<<< HEAD
-import React, { useState } from "react";
-import AddTiffinForm from "./AddTiffinForm";
-import TiffinSettings from "../../ManageSettingComponets/TiffinSettings";
-import TiffinMenumanagement from "../../../pages/Add-Tiffin";
-
-const AddTiffin = () => {
-  const [step, setStep] = useState(1); // Current form step
-  let [ID, setID] = useState(null); // Restaurant ID
-=======
 import React, { useEffect, useState } from "react";
 import AddTiffinForm from "./AddTiffinForm";
 import TiffinSettings from "../../ManageSettingComponets/TiffinSettings";
@@ -17,50 +7,31 @@ import { Link, useNavigate } from "react-router-dom";
 const AddTiffin = () => {
   const [step, setStep] = useState(1); // Current form step
   let [email, setEmail] = useState(null); // Restaurant ID
->>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
   const bagdeStyle = `bg-white p-2 py-1 rounded-lg font-semibold border-[.5px] border-black focus:outline-none`;
 
   // Step navigation
   const nextStep = () => setStep(step + 1);
   const prevStep = () => setStep(step - 1);
 
-<<<<<<< HEAD
-=======
   // useEffect(() => {
   //   setEmail(localStorage.getItem("ownerEmail"));
   // }, [localStorage.getItem("ownerEmail")]);
 
->>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
   return (
     <div className="pt-2">
       {step === 1 && (
         <>
-<<<<<<< HEAD
-          <AddTiffinForm
-            nextStep={nextStep}
-            prevStep={prevStep}
-            ID={ID}
-            setID={setID}
-          />
-          <TiffinSettings />
-=======
           <TiffinSettings
             nextStep={nextStep}
             prevStep={prevStep}
             email={email}
             setEmail={setEmail}
           />
->>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
         </>
       )}
 
       {step === 2 && (
         <>
-<<<<<<< HEAD
-          <TiffinMenumanagement />
-        </>
-      )}
-=======
           <TiffinMenumanagement
             nextStep={nextStep}
             prevStep={prevStep}
@@ -94,7 +65,6 @@ const ThirdPage = () => {
       >
         Go to dashboard
       </button>
->>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
     </div>
   );
 };

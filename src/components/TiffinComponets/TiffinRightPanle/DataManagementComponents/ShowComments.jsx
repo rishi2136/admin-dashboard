@@ -44,31 +44,35 @@ const restaurantReviews = [
   },
 ];
 
-
 const CommentList = ({ fullWidth = true, maxHeight = true }) => {
   const [column, setColumn] = useState(1);
   const [reviews, setReviews] = useState(restaurantReviews);
   const navigate = useNavigate();
 
-  const sortReviewsByRating = () => [...reviews].sort((a, b) => b.rating - a.rating);
+  const sortReviewsByRating = () =>
+    [...reviews].sort((a, b) => b.rating - a.rating);
 
   const handleRatingSort = () => {
     const sorted = sortReviewsByRating();
     setReviews((prev) =>
-      JSON.stringify(sorted) === JSON.stringify(prev) ? restaurantReviews : sorted
+      JSON.stringify(sorted) === JSON.stringify(prev)
+        ? restaurantReviews
+        : sorted
     );
   };
 
   const calculateAverageRating = () =>
-    (reviews.reduce((sum, review) => sum + review.rating, 0) / reviews.length).toFixed(1);
+    (
+      reviews.reduce((sum, review) => sum + review.rating, 0) / reviews.length
+    ).toFixed(1);
 
   return (
-<<<<<<< HEAD
-    <div className={`${fullWidth ? "w-full" : "w-1/2"} ${maxHeight ? "" : "max-h-[70vh]"} overflow-auto`}>
-=======
     // ${fullWidth ? "w-full" : "w-1/2"} ${maxHeight ? "" : "max-h-[70vh]"}
-    <div className={`overflow-auto h-screen overflow-y-auto ${fullWidth ? "w-full" : "w-1/2"} ${maxHeight ? "" : "max-h-[50vh]"}`}>
->>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
+    <div
+      className={`overflow-auto h-screen overflow-y-auto ${
+        fullWidth ? "w-full" : "w-1/2"
+      } ${maxHeight ? "" : "max-h-[50vh]"}`}
+    >
       {/* Average Rating and Filters */}
       <div className="flex justify-between items-center mb-4">
         <div className="flex items-center gap-2">
@@ -85,15 +89,9 @@ const CommentList = ({ fullWidth = true, maxHeight = true }) => {
           >
             <IoMdSwitch />
           </button>
-<<<<<<< HEAD
-          <button className="rounded-2xl border-0 gap-1 text-[14px] px-2 py-1 bg-gray-100">
-            <FaUndo />
-          </button>
-=======
           {/* <button className="rounded-2xl border-0 gap-1 text-[14px] px-2 py-1 bg-gray-100">
             <FaUndo />
           </button> */}
->>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
           <button
             className="rounded-2xl border-0 gap-1 text-[14px] px-2 py-1 bg-gray-100"
             onClick={handleRatingSort}
@@ -104,9 +102,16 @@ const CommentList = ({ fullWidth = true, maxHeight = true }) => {
       </div>
 
       {/* Reviews Grid */}
-      <div className={`grid gap-2 ${column === 1 ? "lg:grid-cols-1" : "lg:grid-cols-2"} grid-cols-1`}>
+      <div
+        className={`grid gap-2 ${
+          column === 1 ? "lg:grid-cols-1" : "lg:grid-cols-2"
+        } grid-cols-1`}
+      >
         {reviews.map((review) => (
-          <div key={review.id} className="border border-gray-200 shadow-sm bg-white rounded-lg p-2 w-auto">
+          <div
+            key={review.id}
+            className="border border-gray-200 shadow-sm bg-white rounded-lg p-2 w-auto"
+          >
             <div className="flex gap-2">
               {/* Image and Reviewer */}
               <div className="flex flex-col items-center justify-center">
@@ -127,13 +132,17 @@ const CommentList = ({ fullWidth = true, maxHeight = true }) => {
               </div>
               {column === 1 && (
                 <div>
-                  <div className="text-[12px]">{review.reviewContent.slice(0, 120)}</div>
+                  <div className="text-[12px]">
+                    {review.reviewContent.slice(0, 120)}
+                  </div>
                 </div>
               )}
             </div>
             {column === 2 && (
               <div>
-                <div className="text-sm p-2">{review.reviewContent.slice(0, 120)}</div>
+                <div className="text-sm p-2">
+                  {review.reviewContent.slice(0, 120)}
+                </div>
               </div>
             )}
           </div>

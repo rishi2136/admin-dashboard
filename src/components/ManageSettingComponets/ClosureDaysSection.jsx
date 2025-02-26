@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React from "react";
 import { FaCalendarAlt } from "react-icons/fa";
 import DatePicker from "./DatePicker";
@@ -9,20 +8,10 @@ export function ClosureDaysSection({
   setClosureDates,
 }) {
   return (
-    <section className="bg-white rounded-lg shadow-lg p-2">
+    <section className="bg-white rounded-lg shadow-lg p-6">
       <h2 className="text-xl font-semibold text-gray-800 mb-4">
         Service Closure Days
       </h2>
-=======
-import React from 'react';
-import { FaCalendarAlt } from 'react-icons/fa';
-import DatePicker from './DatePicker';
-
-export function ClosureDaysSection({ closureDates, handleClosureDateAdd, setClosureDates }) {
-  return (
-    <section className="bg-white rounded-lg shadow-lg p-6">
-      <h2 className="text-xl font-semibold text-gray-800 mb-4">Service Closure Days</h2>
->>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
       <div className="space-y-4">
         <div className="flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-y-0 sm:space-x-4">
           <DatePicker onSelect={handleClosureDateAdd} />

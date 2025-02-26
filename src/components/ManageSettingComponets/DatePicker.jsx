@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { FaCalendarAlt } from 'react-icons/fa';
-import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
+import React, { useState } from "react";
+import { FaCalendarAlt } from "react-icons/fa";
+import Calendar from "react-calendar";
+import "react-calendar/dist/Calendar.css";
 
 function DatePicker({ onSelect }) {
   const [date, setDate] = useState(null);
@@ -16,10 +16,7 @@ function DatePicker({ onSelect }) {
   return (
     <div className="relative">
       <button
-<<<<<<< HEAD
-=======
         type="button"
->>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
         onClick={() => setShowCalendar(!showCalendar)}
         className="flex items-center px-4 py-2 border rounded-md hover:bg-gray-50 w-[280px] justify-start text-left"
       >
@@ -28,10 +25,7 @@ function DatePicker({ onSelect }) {
       </button>
       {showCalendar && (
         <div className="absolute top-full mt-1 z-50 bg-white border rounded-md shadow-lg">
-          <Calendar
-            onChange={handleSelect}
-            value={date}
-          />
+          <Calendar onChange={handleSelect} value={date} />
         </div>
       )}
     </div>

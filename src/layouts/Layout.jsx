@@ -11,22 +11,17 @@ const Layout = () => {
   return (
     <div className="flex h-screen overflow-hidden bg-gray-100">
       {/* Sidebar */}
-      <Sidebar 
-        sidebarOpen={sidebarOpen} 
-        setSidebarOpen={setSidebarOpen} 
+      <Sidebar
+        sidebarOpen={sidebarOpen}
+        setSidebarOpen={setSidebarOpen}
         setCurrentPage={setCurrentPage} // Pass setter function to Sidebar to update currentPage
       />
 
       {/* Main content area */}
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Conditionally render TopNav */}
-
-
         <TopNav />
-
         <TopNav title={currentPage} /> {/* Display current page title */}
-
-
         {/* Outlet for nested routes */}
         <div className="p-4 overflow-y-auto">
           <Outlet />

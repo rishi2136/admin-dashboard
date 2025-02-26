@@ -105,8 +105,6 @@ export const initialOffers = [
     validUntil: "2024-12-31",
   },
 ];
-<<<<<<< HEAD
-=======
 
 export const users = [
   {
@@ -176,4 +174,3 @@ export const users = [
     lastLogin: new Date("2024-01-30T15:30:00.000Z"),
   },
 ];
->>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69

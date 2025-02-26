@@ -114,11 +114,7 @@ const AddTiffinForm = ({ nextStep, prevStep, setID, ID }) => {
     // formData.append("closeDays", closeDays);
 
     try {
-<<<<<<< HEAD
-      const res = await axios.post(`${URL}/firm/add-res`, formData, {
-=======
       const res = await axios.post(`${URL}/add-tiffin`, formData, {
->>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -315,21 +311,12 @@ const AddTiffinForm = ({ nextStep, prevStep, setID, ID }) => {
                 <div className="flex items-center">
                   <input
                     type="checkbox"
-<<<<<<< HEAD
-                    name="eggless"
-                    value={"eggless"}
-                    {...register("category")}
-                  />
-                  <label className="m-0 ms-1" htmlFor="eggless">
-                    Eggless
-=======
                     name="both"
                     value={"both"}
                     {...register("category")}
                   />
                   <label className="m-0 ms-1" htmlFor="both">
                     Both
->>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
                   </label>
                 </div>
               </div>
@@ -560,21 +547,6 @@ const AddTiffinForm = ({ nextStep, prevStep, setID, ID }) => {
   );
 };
 
-<<<<<<< HEAD
-// const Days = ({ days, operationalTime, setOperationalTime }) => {
-//   return (
-//     <div>
-//       {days.map(({ day, idx }) => (
-//         <OperationalTime
-//           key={idx}
-//           day={day}
-//           operationalTime={operationalTime}
-//           setOperationalTime={setOperationalTime}
-//         />
-//       ))}
-//     </div>
-=======
->>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
 //   );
 // };
 

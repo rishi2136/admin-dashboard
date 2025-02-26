@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { FaEdit, FaPlus } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 
@@ -54,7 +54,10 @@ const TaxesAndCharges = () => {
 
   const handleAddTax = () => {
     if (newTax.country && newTax.type && newTax.rate) {
-      setTaxes([...taxes, { id: taxes.length + 1, ...newTax, status: "approved" }]);
+      setTaxes([
+        ...taxes,
+        { id: taxes.length + 1, ...newTax, status: "approved" },
+      ]);
       setNewTax({ country: "", type: "", rate: "", description: "" });
       setNotification("New tax added successfully!");
     } else {
@@ -75,8 +78,16 @@ const TaxesAndCharges = () => {
   };
 
   const handleSubmitProposal = () => {
-    if (role === "restaurant-owner" && newTax.country && newTax.type && newTax.rate) {
-      setTaxes([...taxes, { id: taxes.length + 1, ...newTax, status: "pending" }]);
+    if (
+      role === "restaurant-owner" &&
+      newTax.country &&
+      newTax.type &&
+      newTax.rate
+    ) {
+      setTaxes([
+        ...taxes,
+        { id: taxes.length + 1, ...newTax, status: "pending" },
+      ]);
       setNewTax({ country: "", type: "", rate: "", description: "" });
       setNotification("Tax proposal submitted for approval.");
     } else {
@@ -101,7 +112,9 @@ const TaxesAndCharges = () => {
   return (
     <div className="p-4 bg-gray-100 min-h-screen">
       {/* Notification */}
-      {notification && <div className="mb-2 text-green-600">{notification}</div>}
+      {notification && (
+        <div className="mb-2 text-green-600">{notification}</div>
+      )}
 
       {/* Add/Propose Tax Form */}
       <div className="bg-white p-4 rounded-md shadow-md mb-4">
@@ -157,12 +170,20 @@ const TaxesAndCharges = () => {
         <table className="w-full border-collapse border border-gray-300">
           <thead className="bg-gray-200">
             <tr>
-              <th className="border border-gray-300 p-2 text-center">Country</th>
-              <th className="border border-gray-300 p-2 text-center">Tax Type</th>
+              <th className="border border-gray-300 p-2 text-center">
+                Country
+              </th>
+              <th className="border border-gray-300 p-2 text-center">
+                Tax Type
+              </th>
               <th className="border border-gray-300 p-2 text-center">Rate</th>
-              <th className="border border-gray-300 p-2 text-center">Description</th>
+              <th className="border border-gray-300 p-2 text-center">
+                Description
+              </th>
               <th className="border border-gray-300 p-2 text-center">Status</th>
-              <th className="border border-gray-300 p-2 text-center">Actions</th>
+              <th className="border border-gray-300 p-2 text-center">
+                Actions
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -171,7 +192,9 @@ const TaxesAndCharges = () => {
                 <td className="border border-gray-300 p-2">{tax.country}</td>
                 <td className="border border-gray-300 p-2">{tax.type}</td>
                 <td className="border border-gray-300 p-2">{tax.rate}</td>
-                <td className="border border-gray-300 p-2">{tax.description}</td>
+                <td className="border border-gray-300 p-2">
+                  {tax.description}
+                </td>
                 <td className="border border-gray-300 p-2">{tax.status}</td>
                 <td className="border border-gray-300 p-2 flex justify-center gap-2">
                   {role === "admin" && tax.status === "pending" && (
@@ -222,11 +245,13 @@ const TaxesAndCharges = () => {
 
       {/* Approval Notice */}
 
-
       {/* Dynamic Tax Card Grid */}
       <div className="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {taxes.map((tax) => (
-          <div key={tax.id} className="p-4 bg-white rounded-md shadow-md border">
+          <div
+            key={tax.id}
+            className="p-4 bg-white rounded-md shadow-md border"
+          >
             <h4 className="font-semibold text-lg">{tax.country}</h4>
             <p className="text-gray-700">Type: {tax.type}</p>
             <p className="text-gray-700">Rate: {tax.rate}</p>

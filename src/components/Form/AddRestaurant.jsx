@@ -2,19 +2,12 @@ import React, { useState } from "react";
 import AddRestaurantForm from "./AddRestaurantForm";
 import MenuManagement from "./MenuManagement";
 import { useNavigate } from "react-router-dom";
-<<<<<<< HEAD
-=======
 import css from "./AddRestaurantForm.module.css";
 import RestaurantTiffinSettings from "./utils/RestaurantTiffinSettings";
->>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
 
 const AddRestaurant = () => {
   const [step, setStep] = useState(1); // Current form step
   let [ID, setID] = useState(null); // Restaurant ID
-<<<<<<< HEAD
-  const [productCount, setProductCount] = useState(0);
-=======
->>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
   const bagdeStyle = `bg-white p-2 py-1 rounded-lg font-semibold border-[.5px] border-black focus:outline-none`;
 
   // Step navigation
@@ -23,28 +16,6 @@ const AddRestaurant = () => {
 
   return (
     <div className="pt-2">
-<<<<<<< HEAD
-      <div className="flex justify-between"></div>
-      {step === 1 && (
-        <AddRestaurantForm
-          nextStep={nextStep}
-          prevStep={prevStep}
-          ID={ID}
-          setID={setID}
-        />
-      )}
-
-      {step === 2 && (
-        <MenuManagement
-          nextStep={nextStep}
-          prevStep={prevStep}
-          ID={ID}
-          setID={setID}
-          productCount={productCount}
-          setProductCount={setProductCount}
-        />
-      )}
-=======
       <div className={css.diningContainer}>
         <div className={css.contentWrapper}>
           <div className={css.formWrapper}>
@@ -90,7 +61,6 @@ const ThirdPage = () => {
       >
         Go to dashboard
       </button>
->>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
     </div>
   );
 };

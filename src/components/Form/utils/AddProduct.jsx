@@ -2,22 +2,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { API_URL } from "../../../data/info";
 import { Link, useNavigate } from "react-router-dom";
-<<<<<<< HEAD
-const URL = import.meta.env.VITE_SERVER_URL;
-
-const AddProduct = ({
-  ID,
-  nextStep,
-  prevStep,
-  setID,
-  productCount,
-  setProductCount,
-}) => {
-=======
 // const URL = import.meta.env.VITE_SERVER_URL;
 
 const AddProduct = ({ ID, nextStep, prevStep, setID }) => {
->>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
   const [formData, setFormData] = useState({
     productName: "",
     price: "",
@@ -28,11 +15,7 @@ const AddProduct = ({ ID, nextStep, prevStep, setID }) => {
     dietary: [],
     group: "",
   });
-<<<<<<< HEAD
-
-=======
   const [productCount, setProductCount] = useState(0);
->>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
   const [productList, setProductList] = useState([]);
   const [imagePreviews, setImagePreviews] = useState([]);
   const [errors, setErrors] = useState({});
@@ -40,12 +23,8 @@ const AddProduct = ({ ID, nextStep, prevStep, setID }) => {
 
   const handleReturn = () => {
     setID(null);
-<<<<<<< HEAD
-    navigate("/");
-=======
     // navigate("/");
     nextStep();
->>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
   };
   const dietaryOptions = [
     { label: "Vegetarian", value: "vegetarian" },
@@ -75,15 +54,6 @@ const AddProduct = ({ ID, nextStep, prevStep, setID }) => {
       }));
     }
   };
-<<<<<<< HEAD
-  // console.log(ID);
-  // Fetch product list from the backend
-  useEffect(() => {
-    if (ID) {
-      const fetchProducts = async () => {
-        try {
-          const response = await axios.get(`${URL}/product/${ID}/all-products`);
-=======
 
   // Fetch product list from the backend
   useEffect(() => {
@@ -97,7 +67,6 @@ const AddProduct = ({ ID, nextStep, prevStep, setID }) => {
           if (response.data.message) {
             return alert(response.data.message);
           }
->>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
           setProductList(response.data);
         } catch (err) {
           console.error("Failed to fetch products:", err);
@@ -106,22 +75,12 @@ const AddProduct = ({ ID, nextStep, prevStep, setID }) => {
 
       fetchProducts();
     }
-<<<<<<< HEAD
-  }, [ID, productCount]);
-
-  console.log(ID);
-  // Submit form data to the backend
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-=======
   }, [productCount]);
 
   console.log(ID); //firm id
   // Submit form data to the backend
   const handleSubmit = async (e) => {
     e.preventDefault();
->>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
     if (!validateForm()) return;
 
     const formPayload = new FormData();
@@ -139,36 +98,17 @@ const AddProduct = ({ ID, nextStep, prevStep, setID }) => {
     });
 
     formData.dietary.forEach((item, idx) => {
-<<<<<<< HEAD
-      formPayload.append(`dietary[${idx}]`, item);
-    });
-
-    try {
-      // console.log(formPayload);
-      // Log form data entries to the console
-      for (const [key, value] of formPayload.entries()) {
-        console.log(`${key}: ${value}`);
-      }
-      const res = await axios.post(
-        `${URL}/product/${ID}/add-product`,
-=======
       formPayload.append(`dietary`, item);
     });
 
     try {
       const res = await axios.post(
         `${import.meta.env.VITE_SERVER_URL}/product/${ID}/add-product`,
->>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
         formPayload,
         {
           headers: { "Content-Type": "multipart/form-data" },
         }
       );
-<<<<<<< HEAD
-      alert("Product added successfully!");
-      setProductCount((prev) => prev + 1);
-      console.log(res.data);
-=======
       // alert("Product added successfully!");
       // console.log(res.data)
       console.log(res.data);
@@ -176,7 +116,6 @@ const AddProduct = ({ ID, nextStep, prevStep, setID }) => {
         alert(res.data.message);
       }
       setProductCount((prev) => prev + 1);
->>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
       // Reset form data
       setFormData({
         productName: "",
@@ -223,20 +162,12 @@ const AddProduct = ({ ID, nextStep, prevStep, setID }) => {
   };
 
   return (
-<<<<<<< HEAD
-    <div className="p-6 bg-gray-100 rounded-md">
-=======
     <div className="bg-white rounded-lg shadow-lg p-6 mb-3">
->>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
       <button
         onClick={handleReturn}
         className="rounded-md py-1 px-2 bg-blue-500 text-white float-end"
       >
-<<<<<<< HEAD
-        Finish & Return
-=======
         Done and Move Forward
->>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
       </button>
       <h2 className="text-xl font-semibold mb-4">Add New Product</h2>
       <form onSubmit={handleSubmit}>
@@ -350,11 +281,7 @@ const AddProduct = ({ ID, nextStep, prevStep, setID }) => {
         />
 
         <label>Dietary Preferences:</label>
-<<<<<<< HEAD
-        <div className="flex items-center ">
-=======
         <div className="flex items-center flex-wrap">
->>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
           {dietaryOptions.map(({ label, value }) => (
             <div key={value} className="flex items-center">
               <input
@@ -401,34 +328,14 @@ const AddProduct = ({ ID, nextStep, prevStep, setID }) => {
           type="submit"
           className="mt-4 p-2 bg-blue-500 text-white rounded-md"
         >
-<<<<<<< HEAD
-          Submit
-        </button>
-        <button
-=======
           Add Product
         </button>
         {/* <button
->>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
           type="button"
           className="mt-4 ml-2 p-2 bg-gray-400 text-white rounded-md"
           onClick={prevStep}
         >
           Back
-<<<<<<< HEAD
-        </button>
-      </form>
-
-      {/* Display Added Products */}
-      <h3 className="mt-8 text-lg font-semibold">Product List</h3>
-      <ul>
-        {productList.map((product) => (
-          <li key={product._id} className="border-b py-2">
-            <strong>{product.productName}</strong> - ${product.price}
-            <p>{product.description}</p>
-          </li>
-        ))}
-=======
         </button> */}
       </form>
 
@@ -448,7 +355,6 @@ const AddProduct = ({ ID, nextStep, prevStep, setID }) => {
               </div>
             </li>
           ))}
->>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
       </ul>
     </div>
   );

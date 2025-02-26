@@ -1,367 +1,3 @@
-<<<<<<< HEAD
-// import React, { useState } from "react";
-// import { FiPlusCircle, FiTrash2 } from "react-icons/fi";
-// import axios from "axios"
-// import { FiEdit, FiCopy, FiX } from "react-icons/fi"
-
-// const AddMeal = ({ mealTypes = [] }) => {
-//     const [mealTypeData, setMealTypeData] = useState(mealTypes);
-//     const [newMealType, setNewMealType] = useState({
-//         label: "",
-//         description: "",
-//         prices: {},
-//     });
-//     const [customPlans, setCustomPlans] = useState([]);
-//     const [newPlan, setNewPlan] = useState("");
-//     const [serviceDays, setServiceDays] = useState("");
-//     const [isFlexibleDates, setIsFlexibleDates] = useState(false);
-
-//     // Handle Meal Type Changes
-//     const handleMealTypeChange = (e) => {
-//         const { name, value } = e.target;
-//         if (customPlans.includes(name)) {
-//             setNewMealType((prev) => ({
-//                 ...prev,
-//                 prices: { ...prev.prices, [name]: value },
-//             }));
-//         } else {
-//             setNewMealType((prev) => ({ ...prev, [name]: value }));
-//         }
-//     };
-
-//     // Add a New Meal Type
-//     const handleAddMealType = () => {
-//         if (newMealType.label && newMealType.description) {
-//             const updatedMealType = {
-//                 ...newMealType,
-//                 prices: Object.fromEntries(
-//                     customPlans.map((plan) => [plan, parseInt(newMealType.prices[plan]) || 0])
-//                 ),
-//                 mealTypeId: `custom-${mealTypeData.length + 1}`,
-//             };
-
-//             setMealTypeData((prev) => [...prev, updatedMealType]);
-//             setNewMealType({ label: "", description: "", prices: {} });
-//         }
-//     };
-
-//     // Add a New Plan
-//     const handleAddPlan = () => {
-//         if (newPlan.trim() && !customPlans.includes(newPlan)) {
-//             setCustomPlans((prev) => [...prev, newPlan]);
-//             setNewPlan("");
-//         }
-//     };
-
-//     // const [newMealType, setNewMealType] = useState({
-//     //     label: "",
-//     //     description: "",
-//     //     prices: {},
-//     // });
-//     // const [customPlans, setCustomPlans] = useState([]);
-//     // const [newPlan, setNewPlan] = useState("");
-//     // const [serviceDays, setServiceDays] = useState("");
-//     // const [isFlexibleDates, setIsFlexibleDates] = useState(false);
-//     const [showSuggestions, setShowSuggestions] = useState(false);
-//     const [showServiceDaysSuggetions, setshowServiceDaysSuggetions] = useState(false);
-//     const [showMelatypeSuggestions, setshowMelatypeSuggestions] = useState(false);
-
-//     // const handleMealTypeChange = (e) => {
-//     //     const { name, value } = e.target;
-//     //     if (customPlans.includes(name)) {
-//     //         setNewMealType((prev) => ({
-//     //             ...prev,
-//     //             prices: { ...prev.prices, [name]: value },
-//     //         }));
-//     //     } else {
-//     //         setNewMealType((prev) => ({ ...prev, [name]: value }));
-//     //     }
-//     // };
-
-//     // const handleAddMealType = async () => {
-//     //     if (newMealType.label && newMealType.description) {
-//     //         const payload = {
-//     //             ...newMealType,
-//     //             prices: Object.fromEntries(
-//     //                 customPlans.map((plan) => [plan, parseInt(newMealType.prices[plan]) || 0])
-//     //             ),
-//     //             serviceDays,
-//     //             isFlexibleDates,
-//     //         };
-
-//     //         try {
-//     //             const response = await axios.post("http://localhost:3000/api/add-meal-type", payload);
-//     //             setMealTypeData(response.data.menu.mealTypes);
-//     //             setNewMealType({ label: "", description: "", prices: {} });
-//     //         } catch (error) {
-//     //             console.error("Error adding meal type:", error);
-//     //         }
-//     //     }
-//     // };
-
-//     // const handleAddPlan = async () => {
-//     //     if (newPlan.trim() && !customPlans.includes(newPlan)) {
-//     //         try {
-//     //             const response = await axios.post("http://localhost:3000/api/add-plan", { label: newPlan });
-//     //             setCustomPlans(response.data.menu.plans.map((plan) => plan.label));
-//     //             setNewPlan("");
-//     //         } catch (error) {
-//     //             console.error("Error adding plan:", error);
-//     //         }
-//     //     }
-//     // };
-
-//     // Remove a Plan
-//     const handleRemovePlan = (plan) => {
-//         setCustomPlans((prev) => prev.filter((p) => p !== plan));
-//         setNewMealType((prev) => {
-//             const updatedPrices = { ...prev.prices };
-//             delete updatedPrices[plan];
-//             return { ...prev, prices: updatedPrices };
-//         });
-//     };
-
-//     const predefinedPlans = [
-//         "Trial (1Day)",
-//         "Week",
-//         "1 Month",
-//         "15 Days",
-//     ];
-
-//     const predefinedServiceDays = [
-//         "Monday-Friday",
-//         "Monday-Saturday",
-//         "Monday-Sunday",
-//         "Monday-Thursday",
-//     ];
-
-//     const predefinedMealTypeLabels = [
-//         "Basic Combo",
-//         "Premium Combo",
-//         "Deluxe Combo",
-//         "Light Meal",
-//         "Protein Boost",
-//         "Kids Meal",
-//         "Vegan Combo"
-//     ];
-
-//     return (
-//         <div className="flex w-full">
-//             <div className="w-full">
-//                 {/* Manage Meal Plans */}
-//                 <div className="mb-6">
-//                     <h4 className="text-gray-800 font-medium pb-1">Manage Meal Plans</h4>
-//                     <div className="">
-//                         {/* Dropdown for predefined meal plans */}
-//                         <div className="flex items-center gap-3 relative w-full">
-//                             {/* Input field for custom meal plans */}
-//                             <input
-//                                 type="text"
-//                                 value={newPlan}
-//                                 onChange={(e) => setNewPlan(e.target.value)}
-//                                 onFocus={() => setShowSuggestions(true)}
-//                                 onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
-//                                 placeholder="Enter new plan name"
-//                                 className="w-1/2 border border-gray-300 rounded-lg px-3 py-2 focus:outline-none"
-//                             />
-//                             {/* Suggestions Dropdown */}
-//                             {showSuggestions && (
-//                                 <ul className="absolute top-full left-0  bg-white border border-gray-300 rounded-lg shadow-md z-10 w-1/2">
-//                                     {predefinedPlans
-//                                         .filter((plan) =>
-//                                             plan.toLowerCase().includes(newPlan.toLowerCase())
-//                                         )
-//                                         .map((plan) => (
-//                                             <li
-//                                                 key={plan}
-//                                                 onClick={() => {
-//                                                     setNewPlan(plan);
-//                                                     setShowSuggestions(false);
-//                                                 }}
-//                                                 className="px-3 py-2 hover:bg-gray-200 cursor-pointer"
-//                                             >
-//                                                 {plan}
-//                                             </li>
-//                                         ))}
-//                                 </ul>
-//                             )}
-
-//                             {/* Add plan button */}
-//                             <button
-//                                 onClick={handleAddPlan}
-//                                 className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600"
-//                             >
-//                                 Add Plan
-//                             </button>
-//                         </div>
-//                     </div>
-//                     {/* List of custom plans */}
-//                     {customPlans.length > 0 && (
-//                         <ul className="mt-3 grid grid-cols-3 gap-2 w-full items-center">
-//                             {customPlans.map((plan) => (
-//                                 <li
-//                                     key={plan}
-//                                     className="flex items-center gap-2 justify-between bg-gray-100 px-4 py-2 rounded-lg shadow-sm"
-//                                 >
-//                                     <span className="text-gray-800 text-sm pb-1">{plan}</span>
-//                                     <div className="flex gap-2 items-center">
-//                                         <button
-//                                             // onClick={onEdit}
-//                                             className="text-gray-500 hover:text-blue-500"
-//                                             title="Edit"
-//                                         >
-//                                             <FiEdit size={14} />
-//                                         </button>
-//                                         <button
-//                                             onClick={() => handleRemovePlan(plan)}
-//                                             className="text-red-500 hover:text-red-700"
-//                                         >
-//                                             <FiTrash2 size={14} />
-//                                         </button>
-//                                     </div>
-//                                 </li>
-//                             ))}
-//                         </ul>
-//                     )}
-//                 </div>
-//                 {/* Service Days */}
-//                 <div className="mb-6 flex flex-col gap-2 relative">
-//                     <label className="block font-semibold text-gray-800">
-//                         Set Your Service Days
-//                     </label>
-//                     <input
-//                         type="text"
-//                         placeholder="e.g., Mon-Fri"
-//                         value={serviceDays}
-//                         onChange={(e) => setServiceDays(e.target.value)}
-//                         onFocus={() => setshowServiceDaysSuggetions(true)}
-//                         onBlur={() => setTimeout(() => setshowServiceDaysSuggetions(false), 100)}
-//                         className="w-1/2 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none"
-//                     />
-//                     {showServiceDaysSuggetions && (
-//                         <ul className="absolute top-full left-0  bg-white border border-gray-300 rounded-lg shadow-md z-10 w-1/2">
-//                             {predefinedServiceDays
-//                                 .filter((Service) =>
-//                                     Service.toLowerCase().includes(serviceDays.toLowerCase())
-//                                 )
-//                                 .map((Service) => (
-//                                     <li
-//                                         key={Service}
-//                                         onClick={() => {
-//                                             setServiceDays(Service);
-//                                             setshowServiceDaysSuggetions(false);
-//                                         }}
-//                                         className="px-3 py-2 hover:bg-gray-200 cursor-pointer"
-//                                     >
-//                                         {Service}
-//                                     </li>
-//                                 ))}
-//                         </ul>
-//                     )}
-//                 </div>
-//                 <div className="flex flex-col gap-1 ">
-//                     {/* Flexible Dates */}
-//                     <div className="flex items-center gap-3">
-//                         <div
-//                             className={`relative inline-flex items-center h-6 rounded-full w-11 cursor-pointer ${isFlexibleDates ? "bg-red-500" : "bg-gray-300"
-//                                 }`}
-//                             onClick={() => setIsFlexibleDates(!isFlexibleDates)}
-//                         >
-//                             <span
-//                                 className={`inline-block w-4 h-4 transform bg-white rounded-full transition-transform ${isFlexibleDates ? "translate-x-6" : "translate-x-1"
-//                                     }`}
-//                             ></span>
-//                         </div>
-//                         <label className="font-medium text-gray-700">
-//                             Flexible Start/End Dates
-//                         </label>
-//                     </div>
-//                     <div>
-//                         {isFlexibleDates && (
-//                             <p className="text-sm text-gray-500 mb-3">
-//                                 Now users can set custom start and end dates for each order (e.g., Start: 7/Jan/2025, End: 10/Jan/2025).
-//                             </p>
-//                         )}</div>
-//                 </div>
-
-//                 <div className="border border-gray-500 h-px my-3 w-full"></div>
-//                 {/* Add Meal Type */}
-//                 <div>
-//                     <h3 className="font-semibold text-gray-800 pb-1">Add Meal Type</h3>
-//                     <div className="relative w-full">
-//                         <input
-//                             type="text"
-//                             name="label"
-//                             value={newMealType.label}
-//                             onChange={handleMealTypeChange}
-//                             onFocus={() => setshowMelatypeSuggestions(true)}
-//                             onBlur={() => setTimeout(() => setshowMelatypeSuggestions(false), 100)}
-//                             placeholder="Meal Type Label"
-//                             className="w-full border border-gray-300 rounded-lg p-2 mb-2 focus:outline-none"
-//                         />
-//                         {showMelatypeSuggestions && (
-//                             <ul className="absolute top-full left-0  bg-white border border-gray-300 rounded-lg shadow-md z-10 w-1/2">
-//                                 {predefinedMealTypeLabels
-//                                     .filter((mealType) =>
-//                                         mealType.toLowerCase().includes(newMealType.label.toLowerCase())
-//                                     )
-//                                     .map((mealType) => (
-//                                         <li
-//                                             key={mealType}
-//                                             onClick={() => {
-//                                                 setNewMealType((prev) => ({
-//                                                     ...prev,
-//                                                     label: mealType
-//                                                 }));
-//                                                 setshowMelatypeSuggestions(false);
-//                                             }}
-//                                             className="px-3 py-2 hover:bg-gray-200 cursor-pointer"
-//                                         >
-//                                             {mealType}
-//                                         </li>
-//                                     ))}
-//                             </ul>
-//                         )}
-//                     </div>
-//                     <textarea
-//                         name="description"
-//                         value={newMealType.description}
-//                         onChange={handleMealTypeChange}
-//                         placeholder="Meal Type Description"
-//                         className="w-full border border-gray-300 rounded-lg p-2 mb-2 focus:outline-none"
-//                     />
-//                     <div className="grid grid-cols-2 gap-2">
-//                         {customPlans.map((plan) => (
-//                             <div key={plan}>
-//                                 <input
-//                                     type="number"
-//                                     name={plan}
-//                                     value={newMealType.prices[plan] || ""}
-//                                     onChange={handleMealTypeChange}
-//                                     placeholder={`Price for ${plan}`}
-//                                     className="w-full border border-gray-300 rounded-lg p-2 focus:outline-none"
-//                                 />
-//                             </div>
-//                         ))}
-//                     </div>
-//                     <button
-//                         onClick={handleAddMealType}
-//                         className="mt-2 flex items-center bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600"
-//                     >
-//                         <FiPlusCircle size={18} className="mr-2" />
-//                         Add Meal Type
-//                     </button>
-//                 </div>
-//             </div>
-//         </div>
-//     );
-// };
-
-// export default AddMeal;
-
-const URL = import.meta.env.VITE_SERVER_URL;
-=======
->>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { FiEdit, FiPlus, FiTrash2, FiAlertCircle } from "react-icons/fi";
@@ -379,12 +15,9 @@ const ManageTiffin = () => {
   const [editingItem, setEditingItem] = useState(null);
   const [isFlexibleDates, setIsFlexibleDates] = useState(false);
   const [serviceDays, setServiceDays] = useState([]);
-<<<<<<< HEAD
-=======
   const [Tiffin, setTiffin] = useState();
   const ownerEmail = localStorage.getItem("ownerEmail");
   console.log(ownerEmail);
->>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
 
   const daysOfWeek = [
     "Sunday",
@@ -397,20 +30,6 @@ const ManageTiffin = () => {
   ];
 
   useEffect(() => {
-<<<<<<< HEAD
-    const mapMealPlans = async () => {
-      const response = await axios.get(`${URL}/api/menu`);
-      setPlans(response.data.plans);
-      setMealTypes(response.data.mealTypes);
-      setSelectedPlan(response.data.plans[0]._id);
-      setSelectedMealType(response.data.mealTypes[0].mealTypeId);
-      setServiceDays(response.data.serviceDays);
-      setIsFlexibleDates(response.data.isFlexibleDates);
-      // console.log("The Plans is:", response.data.plans);
-      // console.log("The Type is:", response.data.mealTypes);
-    };
-    mapMealPlans();
-=======
     const mapMenu = async () => {
       const response = await axios.get(
         `${import.meta.env.VITE_SERVER_URL}/api/menu/${ownerEmail}`
@@ -443,7 +62,6 @@ const ManageTiffin = () => {
       setTiffin(data.kitchenName);
     };
     mapTiffin();
->>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
   }, []);
 
   // Handle checkbox toggle
@@ -461,13 +79,9 @@ const ManageTiffin = () => {
   const handleSaveMealDays = async () => {
     try {
       const response = await axios.post(
-<<<<<<< HEAD
-        `${URL}/api/manage_mealdays&Flexidates`,
-=======
         `${
           import.meta.env.VITE_SERVER_URL
         }/api/manage_mealdays&Flexidates/${ownerEmail}`,
->>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
         {
           serviceDays,
           isFlexibleDates,
@@ -482,11 +96,7 @@ const ManageTiffin = () => {
   };
 
   // Save meal days to the backend
-<<<<<<< HEAD
-  console.log("Plan is", plans);
-=======
   // console.log("Plan is", plans)
->>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
   const handleEdit = (item, type) => {
     setIsEditing(true);
     setEditingItem({ ...item, type });
@@ -544,13 +154,6 @@ const ManageTiffin = () => {
     try {
       if (type === "plan") {
         // Call the delete plan route
-<<<<<<< HEAD
-        await axios.delete(`${URL}/api/delete-plan/${item._id}`);
-        setPlans(plans.filter((plan) => plan._id !== item._id));
-      } else if (type === "mealType") {
-        // Call the delete meal type route
-        await axios.delete(`${URL}/api/delete-meal-type/${item.mealTypeId}`);
-=======
         await axios.delete(
           `${import.meta.env.VITE_SERVER_URL}/api/delete-plan/${
             item._id
@@ -564,7 +167,6 @@ const ManageTiffin = () => {
             item.mealTypeId
           }/${ownerEmail}`
         );
->>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
         setMealTypes(
           mealTypes.filter(
             (mealType) => mealType.mealTypeId !== item.mealTypeId
@@ -583,13 +185,9 @@ const ManageTiffin = () => {
 
   const refreshData = async () => {
     try {
-<<<<<<< HEAD
-      const response = await axios.get(`${URL}/api/menu`);
-=======
       const response = await axios.get(
         `${import.meta.env.VITE_SERVER_URL}/api/menu/${ownerEmail}`
       );
->>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
       const menuData = response.data;
       setPlans(menuData.plans);
       setMealTypes(menuData.mealTypes);
@@ -602,25 +200,15 @@ const ManageTiffin = () => {
     // Check if any plan associated with the meal type has a missing price
     return plans.some((plan) => !type.prices || !type.prices[plan._id]);
   };
-<<<<<<< HEAD
-
-  return (
-    <div className="font-inter h-full overflow-auto w-full mx-auto p-1">
-=======
   console.log("Tiffin:", Tiffin);
 
   return (
     <div className="font-inter h-screen overflow-y-auto w-full mx-auto p-1">
->>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
       <div className="bg-white w-full mx-auto mb-4">
         <div className="flex flex-col md:flex-row gap-4">
           <ImageSelector />
           <div className="flex-1 space-y-4">
-<<<<<<< HEAD
-            <h1 className="text-3xl font-medium">Krupa Mess & Tiffins</h1>
-=======
             <h1 className="text-3xl font-medium">{Tiffin}</h1>
->>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
             <div className="">
               <div className="flex gap-2 items-center">
                 <label className="block text-sm font-medium text-gray-700 mb-1">

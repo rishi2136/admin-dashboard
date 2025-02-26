@@ -8,6 +8,7 @@ const SelectMultiRole = ({
   userId = null,
   setToggleAccess,
   setUserCollection = () => {},
+  work = "",
   // setFilterRoles = () => {},
 }) => {
   let [dropdown, setDropdown] = useState(false);
@@ -103,7 +104,11 @@ const SelectMultiRole = ({
                 className="text-[9px] font-semibold px-2 py-2 bg-gray-100 rounded hover:bg-gray-200"
                 onClick={handleDropdown}
               >
-                {userId === null ? <FaFilter /> : "Access Control"}
+                {userId === null ? (
+                  <FaFilter className="text-md" />
+                ) : (
+                  "Access Control"
+                )}
               </div>
 
               {userId !== null ? (
@@ -122,7 +127,12 @@ const SelectMultiRole = ({
                   )}
                 </>
               ) : (
-                <button onClick={clearFilter}>Clear</button>
+                <button
+                  onClick={clearFilter}
+                  className="text-white bg-black rounded px-2"
+                >
+                  Clear
+                </button>
               )}
             </div>
 

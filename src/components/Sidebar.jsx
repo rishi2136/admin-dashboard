@@ -13,10 +13,6 @@ import {
   HiViewList,
   HiOutlineQuestionMarkCircle,
 } from "react-icons/hi";
-<<<<<<< HEAD
-
-=======
->>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
 import { MdOutlineRestaurantMenu } from "react-icons/md";
 import { MdOutlineDining } from "react-icons/md";
 import { dummyData } from "../data/dummy";
@@ -27,10 +23,7 @@ import { FiUpload } from "react-icons/fi";
 import { LuPartyPopper } from "react-icons/lu";
 import { BiSupport } from "react-icons/bi";
 import { GoShieldLock } from "react-icons/go";
-<<<<<<< HEAD
-=======
 import { PiSealPercentFill } from "react-icons/pi";
->>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
 
 export default function Sidebar() {
   const [expanded, setExpanded] = useState(false);
@@ -237,19 +230,14 @@ export default function Sidebar() {
             to="/restaurants"
             icon={MdOutlineRestaurantMenu}
           />
-<<<<<<< HEAD
-          <Tab text="Upload" to={"/upload"} icon={FiUpload} />
-          <Tab text="Access Control" to="/control" icon={GoShieldLock} />
 
           {/* User Management Dropdown */}
-          <li>
-=======
+
           <Tab text="Upload" to={"/register"} icon={FiUpload} />
           <Tab text="Access Control" to="/control" icon={GoShieldLock} />
 
           {/* User Management Dropdown */}
           {/* <li>
->>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
             <div
               className="block rounded-md text-gray-200 hover:bg-gray-700 transition-colors duration-200 cursor-pointer"
               onClick={handleUserManagementClick}
@@ -300,11 +288,8 @@ export default function Sidebar() {
                 </li>
               </ul>
             )}
-<<<<<<< HEAD
           </li>
-=======
           </li> */}
->>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
 
           <Tab text="Order Management" to="/orders" icon={HiOutlineTruck} />
           <Tab
@@ -313,12 +298,8 @@ export default function Sidebar() {
             icon={HiOutlineInformationCircle}
           />
           <Tab text="Help" to="/help" icon={HiOutlineGift} />
-<<<<<<< HEAD
           <Tab text="Faq's" to="/faqs" icon={HiOutlineQuestionMarkCircle} />
           <Tab text="Offers" to="/offers" icon={HiOutlineGift} />
-=======
-          <Tab text="Offers" to="/offers" icon={PiSealPercentFill} />
->>>>>>> c7983b2717f06e0ff11610ca4a58703a0c141e69
           <Tab text="Taxes and Charges" to="/taxes" icon={HiOutlineGift} />
           <Tab
             text="Claim Restaurant"
@@ -340,7 +321,6 @@ export default function Sidebar() {
       </nav>
 
       {/* Bottom outlet info (slide/fade) */}
-     
     </div>
   );
 }
