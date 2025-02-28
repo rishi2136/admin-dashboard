@@ -195,6 +195,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { FaChevronUp, FaChevronDown } from "react-icons/fa";
 
 const HistoryLogs = () => {
+
   const [logs] = useState([
     {
       id: 1,
@@ -259,6 +260,42 @@ const HistoryLogs = () => {
     },
   ]);
 
+  // use logs from backend
+  
+  // useEffect(() => {
+  //   axios.get("http://localhost:5000/api/logs") // Change URL if needed
+  //     .then((response) => {
+  //       setLogs(response.data);
+  //       setFilteredLogs(response.data);
+  //     })
+  //     .catch((error) => console.error("Error fetching logs:", error));
+  // }, []);
+
+  // const toggleDetails = (id) => {
+  //   setExpandedLog(expandedLog === id ? null : id);
+  // };
+
+  // const handleSearch = () => {
+  //   let filtered = logs;
+
+  //   if (filterStatus) {
+  //     filtered = filtered.filter((log) => log.status === filterStatus);
+  //   }
+
+  //   if (startDate && endDate) {
+  //     filtered = filtered.filter((log) => {
+  //       const logDate = new Date(log.time.split(" ")[0].split("-").reverse().join("-"));
+  //       return logDate >= startDate && logDate <= endDate;
+  //     });
+  //   }
+
+  //   if (filterType.length > 0) {
+  //     filtered = filtered.filter((log) => filterType.includes(log.type));
+  //   }
+
+  //   setFilteredLogs(filtered);
+  // };
+  
   const [filterType, setFilterType] = useState([]);
   const [filterStatus, setFilterStatus] = useState("");
   const [dateRange, setDateRange] = useState([null, null]);
